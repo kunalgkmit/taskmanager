@@ -1,16 +1,25 @@
 import { TextInput, View } from 'react-native';
 import React, { useState } from 'react';
 import { styles } from './styles.ts';
-import CustomButton from '../button/Button.tsx';
+import { Button as CustomButton } from '../button/index.ts';
 
 interface Props {
-  addTask: (taskTitle: string, priority: number, description: string) => void;
+  addTask: (task: {
+    title: string;
+    priority: number;
+    description: string;
+  }) => void;
 }
 
-export default function Taskform({ addTask }: Props) {
-  const [taskTitle, setTaskTitle] = useState('');
-  const [taskPriority, setTaskPriority] = useState(0);
-  const [taskDescription, setTaskDescription] = useState('');
+export default function TaskForm({ addTask }: Props) {
+  const [title, setTaskTitle] = useState('');
+  const [priority, setTaskPriority] = useState(0);
+  const [description, setTaskDescription] = useState('');
+
+  const buttonHandler = () => {
+    addTask({ title, priority, description });
+  };
+
   return (
     <View>
       <TextInput
@@ -29,10 +38,7 @@ export default function Taskform({ addTask }: Props) {
         placeholder="Enter task description"
         style={styles.userInput}
       />
-      <CustomButton
-        title="Add task"
-        onPress={() => addTask(taskTitle, taskPriority, taskDescription)}
-      />
+      <CustomButton title="Add task" onPress={buttonHandler} />
     </View>
   );
 }

@@ -1,4 +1,4 @@
-import Taskform from './Taskform';
+import TaskForm from './TaskForm';
 import { styles } from './styles';
 
-export { Taskform, styles };
+export { TaskForm, styles };
