@@ -1,4 +1,4 @@
-import Taskmodal from './Taskmodal';
+import TaskModal from './TaskModal';
 import { styles } from './styles';
 
-export { Taskmodal, styles };
+export { TaskModal, styles };

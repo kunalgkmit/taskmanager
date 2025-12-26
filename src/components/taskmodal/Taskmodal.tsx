@@ -1,7 +1,7 @@
 import { View, Modal } from 'react-native';
 import React, { ReactNode } from 'react';
 import { styles } from './styles.ts';
-import CustomButton from '../button/Button.tsx';
+import { Button as CustomButton } from '../button/index.ts';
 
 interface Props {
   showModal: boolean;
@@ -9,18 +9,16 @@ interface Props {
   children: ReactNode;
 }
 
-export default function Taskmodal({
+export default function TaskModal({
   showModal,
   setShowModal,
   children,
 }: Props) {
   return (
     <Modal transparent={true} visible={showModal}>
-      <View style={styles.modalWrapper}>
-        <View style={styles.modalView}>
-          {children}
-          <CustomButton title="Close" onPress={() => setShowModal(false)} />
-        </View>
+      <View style={styles.modalView}>
+        {children}
+        <CustomButton title="Close" onPress={() => setShowModal(false)} />
       </View>
     </Modal>
   );
