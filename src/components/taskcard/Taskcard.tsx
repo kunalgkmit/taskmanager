@@ -1,9 +1,9 @@
 import { View, Text } from 'react-native';
 import BouncyCheckbox from 'react-native-bouncy-checkbox';
 import { styles } from './styles.ts';
-import CustomButton from '../button/Button.tsx';
+import { Button as CustomButton } from '../button/index.ts';
 
-export default function Taskcard(task: {
+export default function TaskCard(task: {
   title: string;
   priority: number;
   description: string;

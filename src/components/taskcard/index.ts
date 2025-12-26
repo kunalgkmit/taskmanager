@@ -1,4 +1,4 @@
-import Taskcard from './Taskcard';
+import TaskCard from './TaskCard';
 import { styles } from './styles';
 
-export { Taskcard, styles };
+export { TaskCard, styles };
