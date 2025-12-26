@@ -1,9 +1,9 @@
 import { View, Text, FlatList } from 'react-native';
 import { styles } from './styles.ts';
 import React, { useState } from 'react';
-import { TaskCard } from '../../components/taskCard/index.ts';
-import { TaskModal } from '../../components/taskModal/index.ts';
-import { TaskForm } from '../../components/taskForm/index.ts';
+import { TaskCard } from '../../components/taskCard';
+import { TaskModal } from '../../components/taskModal';
+import { TaskForm } from '../../components/taskForm';
 import { Button as CustomButton } from '../../components/button';
 
 type Task = {
@@ -33,7 +33,7 @@ export default function Home() {
         showModal={showModal}
         setShowModal={(visible: boolean) => setShowModal(visible)}
       >
-        <TaskForm addTask={(task: Task) => addTask(task)} />
+        <TaskForm addTask={addTask} />
       </TaskModal>
       <CustomButton title={'Add New Task'} onPress={() => setShowModal(true)} />
     </View>

@@ -1,7 +1,7 @@
 import { TextInput, View } from 'react-native';
 import React, { useState } from 'react';
 import { styles } from './styles.ts';
-import { Button as CustomButton } from '../button/index.ts';
+import { Button as CustomButton } from '../button';
 
 interface Props {
   addTask: (task: {
@@ -20,21 +20,25 @@ export default function TaskForm({ addTask }: Props) {
     addTask({ title, priority, description });
   };
 
+  const priorityHandler = (priority: string) => {
+    setTaskPriority(Number(priority));
+  };
+
   return (
     <View>
       <TextInput
-        onChangeText={title => setTaskTitle(title)}
+        onChangeText={setTaskTitle}
         placeholder="Enter task title"
         style={styles.userInput}
       />
       <TextInput
         keyboardType="numeric"
-        onChangeText={priority => setTaskPriority(Number(priority))}
+        onChangeText={priorityHandler}
         placeholder="Enter task priority"
         style={styles.userInput}
       />
       <TextInput
-        onChangeText={description => setTaskDescription(description)}
+        onChangeText={setTaskDescription}
         placeholder="Enter task description"
         style={styles.userInput}
       />
