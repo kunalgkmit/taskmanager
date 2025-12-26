@@ -1,10 +1,10 @@
 import { View, Text, FlatList } from 'react-native';
-import { styles } from './styles.tsx';
+import { styles } from './styles.ts';
 import React, { useState } from 'react';
-import Taskcard from '../../components/taskcard/Taskcard.tsx';
-import Taskmodal from '../../components/taskmodal/Taskmodal.tsx';
-import Taskform from '../../components/taskform/Taskform.tsx';
-import CustomButton from '../../components/button/Button.tsx';
+import { TaskCard } from '../../components/taskCard/index.ts';
+import { TaskModal } from '../../components/taskModal/index.ts';
+import { TaskForm } from '../../components/taskForm/index.ts';
+import { Button as CustomButton } from '../../components/button';
 
 type Task = {
   title: string;
@@ -16,19 +16,8 @@ export default function Home() {
   const [showModal, setShowModal] = useState<boolean>(false);
   const [tasks, setTasks] = useState<Task[]>([]);
 
-  const addTask = (
-    taskTitle: string,
-    priority: number,
-    description: string,
-  ) => {
-    setTasks([
-      ...tasks,
-      {
-        title: taskTitle,
-        priority: priority,
-        description: description,
-      },
-    ]);
+  const addTask = (task: Task) => {
+    setTasks([...tasks, task]);
     setShowModal(false);
   };
 
@@ -36,20 +25,16 @@ export default function Home() {
     <View style={styles.container}>
       <FlatList
         data={tasks}
-        renderItem={({ item }) => <Taskcard {...item} />}
+        renderItem={({ item }) => <TaskCard {...item} />}
         ListEmptyComponent={<Text>No tasks to display</Text>}
       />
 
-      <Taskmodal
+      <TaskModal
         showModal={showModal}
         setShowModal={(visible: boolean) => setShowModal(visible)}
       >
-        <Taskform
-          addTask={(taskTitle: string, priority: number, description: string) =>
-            addTask(taskTitle, priority, description)
-          }
-        />
-      </Taskmodal>
+        <TaskForm addTask={(task: Task) => addTask(task)} />
+      </TaskModal>
       <CustomButton title={'Add New Task'} onPress={() => setShowModal(true)} />
     </View>
   );
