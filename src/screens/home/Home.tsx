@@ -2,9 +2,7 @@ import { View, Text, FlatList } from 'react-native';
 import { styles } from './styles.ts';
 import React, { useState } from 'react';
 import { TaskCard } from '../../components/taskCard';
-import { TaskModal } from '../../components/taskModal';
-import { TaskForm } from '../../components/taskForm';
-import { Button as CustomButton } from '../../components/button';
+import ModalForm from '../../components/modalForm';
 
 type Task = {
   title: string;
@@ -13,12 +11,10 @@ type Task = {
 };
 
 export default function Home() {
-  const [showModal, setShowModal] = useState<boolean>(false);
   const [tasks, setTasks] = useState<Task[]>([]);
 
   const addTask = (task: Task) => {
     setTasks([...tasks, task]);
-    setShowModal(false);
   };
 
   return (
@@ -29,13 +25,7 @@ export default function Home() {
         ListEmptyComponent={<Text>No tasks to display</Text>}
       />
 
-      <TaskModal
-        showModal={showModal}
-        setShowModal={(visible: boolean) => setShowModal(visible)}
-      >
-        <TaskForm addTask={addTask} />
-      </TaskModal>
-      <CustomButton title={'Add New Task'} onPress={() => setShowModal(true)} />
+      <ModalForm addTask={addTask} />
     </View>
   );
 }
