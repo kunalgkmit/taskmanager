@@ -1,7 +1,7 @@
 import { TextInput, View } from 'react-native';
 import React, { useState } from 'react';
 import { styles } from './styles.ts';
-import { Button as CustomButton } from '../button';
+import { Button as CustomButton } from '../button/index.ts';
 
 interface Props {
   addTask: (task: {
