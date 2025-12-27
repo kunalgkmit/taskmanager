@@ -2,7 +2,7 @@ import { View, Text, FlatList } from 'react-native';
 import { styles } from './styles.ts';
 import React, { useState } from 'react';
 import { TaskCard } from '../../components/taskCard';
-import ModalForm from '../../components/modalForm';
+import AddTaskModalForm from '../../components/addTaskModalForm';
 
 type Task = {
   title: string;
@@ -33,7 +33,7 @@ export default function Home() {
         ListEmptyComponent={<Text>No tasks to display</Text>}
       />
 
-      <ModalForm addTask={addTask} />
+      <AddTaskModalForm addTask={addTask} />
     </View>
   );
 }

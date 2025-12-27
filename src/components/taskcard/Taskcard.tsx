@@ -18,7 +18,7 @@ export default function TaskCard(task: {
     <View style={styles.container}>
       <BouncyCheckbox size={20} onPress={() => {}} />
       <Text style={styles.item}>
-        {task.title} - {task.index}
+        {task.title} - {task.priority}
       </Text>
       <CustomButton title="UPDATE" onPress={() => {}} />
       <CustomButton title="DELETE" onPress={handleDelete} />
