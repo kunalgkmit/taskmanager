@@ -32,6 +32,7 @@ export default function TaskForm({ addTask, setShowAddTaskFormModal }: Props) {
         onChangeText={setTaskTitle}
         placeholder="Enter task title"
         style={styles.userInput}
+        defaultValue={title}
       />
       <TextInput
         keyboardType="numeric"
@@ -43,6 +44,7 @@ export default function TaskForm({ addTask, setShowAddTaskFormModal }: Props) {
         onChangeText={setTaskDescription}
         placeholder="Enter task description"
         style={styles.userInput}
+        defaultValue={description}
       />
       <CustomButton title="Add task" onPress={buttonHandler} />
     </View>

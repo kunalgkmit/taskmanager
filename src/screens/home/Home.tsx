@@ -22,12 +22,24 @@ export default function Home() {
     setTasks(updatedTasks);
   };
 
+  const updateTask = ({ ...updatedTask }: Task, idToUpdate?: number) => {
+    const updatedTasks = tasks.map((item, index) =>
+      index === idToUpdate ? updatedTask : item,
+    );
+    setTasks(updatedTasks);
+  };
+
   return (
     <View style={styles.container}>
       <FlatList
         data={tasks}
         renderItem={({ item, index }) => (
-          <TaskCard {...item} index={index} deleteTask={deleteTask} />
+          <TaskCard
+            {...item}
+            index={index}
+            deleteTask={deleteTask}
+            updateTask={updateTask}
+          />
         )}
         ListEmptyComponent={<Text>No tasks to display</Text>}
       />
