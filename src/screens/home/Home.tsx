@@ -15,13 +15,21 @@ export default function Home() {
 
   const addTask = (task: Task) => {
     setTasks([...tasks, task]);
+    console.log(tasks);
+  };
+
+  const deleteTask = (idToDelete: number) => {
+    const updatedTasks = tasks.filter((item, index) => index !== idToDelete);
+    setTasks(updatedTasks);
   };
 
   return (
     <View style={styles.container}>
       <FlatList
         data={tasks}
-        renderItem={({ item }) => <TaskCard {...item} />}
+        renderItem={({ item, index }) => (
+          <TaskCard {...item} index={index} deleteTask={deleteTask} />
+        )}
         ListEmptyComponent={<Text>No tasks to display</Text>}
       />
 
