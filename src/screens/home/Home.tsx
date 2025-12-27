@@ -1,6 +1,6 @@
+import React, { useState } from 'react';
 import { View, Text, FlatList } from 'react-native';
 import { styles } from './styles.ts';
-import React, { useState } from 'react';
 import { TaskCard } from '../../components/taskCard';
 import AddTaskModalForm from '../../components/addTaskModalForm';
 
@@ -15,7 +15,6 @@ export default function Home() {
 
   const addTask = (task: Task) => {
     setTasks([...tasks, task]);
-    console.log(tasks);
   };
 
   const deleteTask = (idToDelete: number) => {
