@@ -16,15 +16,8 @@ export default function ModalForm({ addTask }: Props) {
   const [showModal, setShowModal] = useState(false);
   return (
     <View>
-      <TaskModal
-        showModal={showModal}
-        setShowModal={(visible: boolean) => setShowModal(visible)}
-      >
-        <TaskForm
-          addTask={addTask}
-          showModal={showModal}
-          setShowModal={(visible: boolean) => setShowModal(visible)}
-        />
+      <TaskModal showModal={showModal} setShowModal={setShowModal}>
+        <TaskForm addTask={addTask} setShowModal={setShowModal} />
       </TaskModal>
       <CustomButton title={'Add New Task'} onPress={() => setShowModal(true)} />
     </View>
