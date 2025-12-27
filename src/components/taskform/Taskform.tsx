@@ -4,7 +4,6 @@ import { styles } from './styles.ts';
 import { Button as CustomButton } from '../button';
 
 interface Props {
-  showModal: boolean;
   setShowModal: (visible: boolean) => void;
   addTask: (task: {
     title: string;

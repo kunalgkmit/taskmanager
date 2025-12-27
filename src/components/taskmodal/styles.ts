@@ -10,7 +10,6 @@ export const styles = StyleSheet.create({
     borderWidth: 1,
     elevation: 10,
     margin: 60,
-    marginTop: 200,
-    marginBottom: 200,
+    marginVertical: 200,
   },
 });
