@@ -4,6 +4,7 @@ import { styles } from './styles.ts';
 import { Button as CustomButton } from '../button/index.ts';
 
 interface Props {
+  setShowAddTaskFormModal: (visible: boolean) => void;
   addTask: (task: {
     title: string;
     priority: number;
@@ -11,13 +12,14 @@ interface Props {
   }) => void;
 }
 
-export default function TaskForm({ addTask }: Props) {
+export default function TaskForm({ addTask, setShowAddTaskFormModal }: Props) {
   const [title, setTaskTitle] = useState('');
   const [priority, setTaskPriority] = useState(0);
   const [description, setTaskDescription] = useState('');
 
   const buttonHandler = () => {
     addTask({ title, priority, description });
+    setShowAddTaskFormModal(false);
   };
 
   const priorityHandler = (priority: string) => {

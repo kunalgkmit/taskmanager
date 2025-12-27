@@ -7,17 +7,21 @@ export default function TaskCard(task: {
   title: string;
   priority: number;
   description: string;
+  index: number;
+  deleteTask: (id: number) => void;
 }) {
+  const handleDelete = () => {
+    task.deleteTask(task.index);
+  };
+
   return (
-    <View>
-      <View style={styles.container}>
-        <BouncyCheckbox size={20} onPress={() => {}} />
-        <Text style={styles.item}>
-          {task.title} - {task.priority}
-        </Text>
-        <CustomButton title="UPDATE" onPress={() => {}} />
-        <CustomButton title="DELETE" onPress={() => {}} />
-      </View>
+    <View style={styles.container}>
+      <BouncyCheckbox size={20} onPress={() => {}} />
+      <Text style={styles.item}>
+        {task.title} - {task.priority}
+      </Text>
+      <CustomButton title="UPDATE" onPress={() => {}} />
+      <CustomButton title="DELETE" onPress={handleDelete} />
     </View>
   );
 }

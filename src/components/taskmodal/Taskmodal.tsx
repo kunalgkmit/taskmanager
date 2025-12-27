@@ -4,21 +4,24 @@ import { styles } from './styles.ts';
 import { Button as CustomButton } from '../button/index.ts';
 
 interface Props {
-  showModal: boolean;
-  setShowModal: (visible: boolean) => void;
+  showAddTaskFormModal: boolean;
+  setShowAddTaskFormModal: (visible: boolean) => void;
   children: ReactNode;
 }
 
 export default function TaskModal({
-  showModal,
-  setShowModal,
+  showAddTaskFormModal,
+  setShowAddTaskFormModal,
   children,
 }: Props) {
   return (
-    <Modal transparent={true} visible={showModal}>
+    <Modal transparent={true} visible={showAddTaskFormModal}>
       <View style={styles.modalView}>
         {children}
-        <CustomButton title="Close" onPress={() => setShowModal(false)} />
+        <CustomButton
+          title="Close"
+          onPress={() => setShowAddTaskFormModal(false)}
+        />
       </View>
     </Modal>
   );

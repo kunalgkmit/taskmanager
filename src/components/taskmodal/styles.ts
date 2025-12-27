@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { Dimensions, StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
   modalView: {
@@ -8,9 +8,9 @@ export const styles = StyleSheet.create({
     backgroundColor: 'white',
     borderRadius: 20,
     borderWidth: 1,
-    elevation: 10,
-    margin: 60,
-    marginTop: 200,
-    marginBottom: 200,
+    elevation: 3,
+    padding: 30,
+    margin: 20,
+    marginVertical: 200,
   },
 });
