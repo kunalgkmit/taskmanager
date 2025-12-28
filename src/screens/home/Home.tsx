@@ -3,11 +3,12 @@ import { View, Text, FlatList } from 'react-native';
 import { styles } from './styles.ts';
 import { TaskCard } from '../../components/taskCard';
 import AddTaskModalForm from '../../components/addTaskModalForm';
+import NoTasksToDiaplay from '../../components/noTasksToDisplay';
 
 type Task = {
   taskId: number;
   title: string;
-  priority: number;
+  priority: string;
   description: string;
 };
 
@@ -16,6 +17,7 @@ export default function Home() {
   const id = tasks.length + 1;
 
   const addTask = (task: Task) => {
+    console.log(task);
     task = { ...task, taskId: id };
     setTasks([...tasks, task]);
   };
@@ -35,11 +37,13 @@ export default function Home() {
   return (
     <View style={styles.container}>
       <FlatList
+        scrollEnabled={tasks.length > 0}
+        showsVerticalScrollIndicator={false}
         data={tasks}
         renderItem={({ item }) => (
           <TaskCard {...item} deleteTask={deleteTask} updateTask={updateTask} />
         )}
-        ListEmptyComponent={<Text>No tasks to display</Text>}
+        ListEmptyComponent={<NoTasksToDiaplay />}
       />
 
       <AddTaskModalForm addTask={addTask} />
