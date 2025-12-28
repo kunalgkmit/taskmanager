@@ -18,7 +18,6 @@ export default function Home() {
   const addTask = (task: Task) => {
     task = { ...task, taskId: id };
     setTasks([...tasks, task]);
-    console.log(tasks);
   };
 
   const deleteTask = (idToDelete: number) => {
@@ -28,24 +27,17 @@ export default function Home() {
 
   const updateTask = (updatedTask: Task, idToUpdate: number) => {
     const index = tasks.findIndex(item => item.taskId === idToUpdate);
-    console.log(idToUpdate);
     const updatedTasks = [...tasks];
     updatedTasks.splice(index, 1, updatedTask);
     setTasks(updatedTasks);
-    console.log(updatedTasks);
   };
 
   return (
     <View style={styles.container}>
       <FlatList
         data={tasks}
-        renderItem={({ item, index }) => (
-          <TaskCard
-            {...item}
-            index={index}
-            deleteTask={deleteTask}
-            updateTask={updateTask}
-          />
+        renderItem={({ item }) => (
+          <TaskCard {...item} deleteTask={deleteTask} updateTask={updateTask} />
         )}
         ListEmptyComponent={<Text>No tasks to display</Text>}
       />

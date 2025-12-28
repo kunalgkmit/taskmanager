@@ -18,7 +18,6 @@ export default function TaskCard(task: {
   priority: number;
   description: string;
   taskId: number;
-  index: number;
   deleteTask: (id: number) => void;
   updateTask: (newTask: Task, idToUpdate: number) => void;
 }) {
