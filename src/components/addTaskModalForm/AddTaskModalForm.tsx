@@ -6,6 +6,7 @@ import { TaskForm } from '../taskForm';
 
 interface Props {
   addTask: (task: {
+    taskId: number;
     title: string;
     priority: number;
     description: string;
@@ -27,6 +28,7 @@ export default function AddTaskFormModal({ addTask }: Props) {
         <TaskForm
           addTask={addTask}
           setShowAddTaskFormModal={setShowAddTaskFormModal}
+          buttonName="Add Task"
         />
       </TaskModal>
       <CustomButton title={'Add New Task'} onPress={buttonHandler} />

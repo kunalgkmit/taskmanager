@@ -1,7 +1,7 @@
 import { View, Modal } from 'react-native';
 import React, { ReactNode } from 'react';
 import { styles } from './styles.ts';
-import { Button as CustomButton } from '../button/index.ts';
+import { Button as CustomButton } from '../button';
 
 interface Props {
   showAddTaskFormModal: boolean;
