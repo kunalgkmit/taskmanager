@@ -2,11 +2,12 @@ import React, { useState } from 'react';
 import { View, Text } from 'react-native';
 import BouncyCheckbox from 'react-native-bouncy-checkbox';
 import { styles } from './styles.ts';
-import { Button as CustomButton } from '../button/index.ts';
-import TaskModal from '../taskModal/Taskmodal.tsx';
-import TaskForm from '../taskForm/Taskform.tsx';
+import { Button as CustomButton } from '../button';
+import { TaskModal } from '../taskModal';
+import { TaskForm } from '../taskForm';
 
 interface Task {
+  taskId: number;
   title: string;
   priority: number;
   description: string;
@@ -16,19 +17,21 @@ export default function TaskCard(task: {
   title: string;
   priority: number;
   description: string;
+  taskId: number;
   index: number;
   deleteTask: (id: number) => void;
-  updateTask: (newTask: Task, id: number) => void;
+  updateTask: (newTask: Task, idToUpdate: number) => void;
 }) {
   const [isVisible, setIsVisible] = useState(false);
   const handleDelete = () => {
-    task.deleteTask(task.index);
+    task.deleteTask(task.taskId);
   };
   const handleUpdateButton = () => {
     setIsVisible(true);
   };
-  const getNewTask = (newTask: Task) => {
-    task.updateTask({ ...newTask }, task.index);
+  const updatedTask = (newTask: Task) => {
+    newTask = { ...newTask, taskId: task.taskId };
+    task.updateTask({ ...newTask }, task.taskId);
   };
 
   return (
@@ -45,8 +48,9 @@ export default function TaskCard(task: {
           setShowAddTaskFormModal={setIsVisible}
         >
           <TaskForm
-            addTask={(newTask: Task) => getNewTask(newTask)}
+            addTask={updatedTask}
             setShowAddTaskFormModal={setIsVisible}
+            buttonName="Update Task"
           />
         </TaskModal>
       )}
