@@ -2,6 +2,7 @@ import { View, Modal } from 'react-native';
 import React, { ReactNode } from 'react';
 import { styles } from './styles.ts';
 import { Button as CustomButton } from '../button';
+import TaskPriorityButton from '../taskPriorityButton/TaskPriorityButton.tsx';
 
 interface Props {
   showAddTaskFormModal: boolean;
@@ -15,7 +16,11 @@ export default function TaskModal({
   children,
 }: Props) {
   return (
-    <Modal transparent={true} visible={showAddTaskFormModal}>
+    <Modal
+      transparent={true}
+      visible={showAddTaskFormModal}
+      animationType="slide"
+    >
       <View style={styles.modalView}>
         {children}
         <CustomButton

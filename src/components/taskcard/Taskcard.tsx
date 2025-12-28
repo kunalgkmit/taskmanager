@@ -9,13 +9,13 @@ import { TaskForm } from '../taskForm';
 interface Task {
   taskId: number;
   title: string;
-  priority: number;
+  priority: string;
   description: string;
 }
 
 export default function TaskCard(task: {
   title: string;
-  priority: number;
+  priority: string;
   description: string;
   taskId: number;
   deleteTask: (id: number) => void;
@@ -35,24 +35,31 @@ export default function TaskCard(task: {
 
   return (
     <View style={styles.container}>
-      <BouncyCheckbox size={20} onPress={() => {}} />
-      <Text style={styles.item}>
-        {task.title} - {task.priority}
-      </Text>
-      <CustomButton title="UPDATE" onPress={handleUpdateButton} />
-      <CustomButton title="DELETE" onPress={handleDelete} />
-      {isVisible && (
-        <TaskModal
-          showAddTaskFormModal={isVisible}
-          setShowAddTaskFormModal={setIsVisible}
-        >
-          <TaskForm
-            addTask={updatedTask}
+      <View style={styles.wrapper}>
+        <BouncyCheckbox size={30} onPress={() => {}} fillColor="#88D66C" />
+        <View style={styles.textContainer}>
+          <Text style={styles.item}>
+            {task.title} - {task.priority}
+          </Text>
+          <Text style={styles.description}>{task.description}</Text>
+        </View>
+        {isVisible && (
+          <TaskModal
+            showAddTaskFormModal={isVisible}
             setShowAddTaskFormModal={setIsVisible}
-            buttonName="Update Task"
-          />
-        </TaskModal>
-      )}
+          >
+            <TaskForm
+              addTask={updatedTask}
+              setShowAddTaskFormModal={setIsVisible}
+              buttonName="Update Task"
+            />
+          </TaskModal>
+        )}
+      </View>
+      <View style={styles.buttonContainer}>
+        <CustomButton title="UPDATE" onPress={handleUpdateButton} />
+        <CustomButton title="DELETE" onPress={handleDelete} />
+      </View>
     </View>
   );
 }

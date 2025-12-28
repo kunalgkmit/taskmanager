@@ -8,7 +8,7 @@ interface Props {
   addTask: (task: {
     taskId: number;
     title: string;
-    priority: number;
+    priority: string;
     description: string;
   }) => void;
 }
