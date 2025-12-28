@@ -2,6 +2,7 @@ import { TextInput, View } from 'react-native';
 import React, { useState } from 'react';
 import { styles } from './styles.ts';
 import { Button as CustomButton } from '../button';
+import { TaskPriorityButton } from '../taskPriorityButton';
 
 interface Props {
   buttonName: string;
@@ -9,7 +10,7 @@ interface Props {
   addTask: (task: {
     taskId: number;
     title: string;
-    priority: number;
+    priority: string;
     description: string;
   }) => void;
 }
@@ -20,17 +21,13 @@ export default function TaskForm({
   buttonName,
 }: Props) {
   const [title, setTaskTitle] = useState('');
-  const [priority, setTaskPriority] = useState(0);
+  const [priority, setTaskPriority] = useState('');
   const [description, setTaskDescription] = useState('');
   const taskId = 0;
 
   const buttonHandler = () => {
     addTask({ taskId, title, priority, description });
     setShowAddTaskFormModal(false);
-  };
-
-  const priorityHandler = (priority: string) => {
-    setTaskPriority(Number(priority));
   };
 
   return (
@@ -41,12 +38,7 @@ export default function TaskForm({
         style={styles.userInput}
         defaultValue={title}
       />
-      <TextInput
-        keyboardType="numeric"
-        onChangeText={priorityHandler}
-        placeholder="Enter task priority"
-        style={styles.userInput}
-      />
+      <TaskPriorityButton setTaskPriority={setTaskPriority} />
       <TextInput
         onChangeText={setTaskDescription}
         placeholder="Enter task description"
