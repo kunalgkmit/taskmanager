@@ -17,7 +17,6 @@ export default function Home() {
   const id = tasks.length + 1;
 
   const addTask = (task: Task) => {
-    console.log(task);
     task = { ...task, taskId: id };
     setTasks([...tasks, task]);
   };
