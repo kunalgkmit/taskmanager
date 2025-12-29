@@ -27,6 +27,7 @@ export default function TaskForm({
   const [title, setTitle] = useState('');
   const [priority, setPriority] = useState('');
   const [description, setDescription] = useState('');
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     if (initialTask) {
@@ -37,13 +38,21 @@ export default function TaskForm({
   }, [initialTask]);
 
   const submitHandler = () => {
-    onSubmit({
-      taskId: initialTask?.taskId ?? 0,
-      title,
-      priority,
-      description,
-    });
-    setShowModal(false);
+    const validateTitle = title.trim() === '';
+    const validatePriority = priority.trim() === '';
+    const validateDescription = description.trim() === '';
+    setError(validateTitle || validatePriority || validateDescription);
+    const validateError =
+      validateTitle || validatePriority || validateDescription;
+    if (!validateError) {
+      onSubmit({
+        taskId: initialTask ? initialTask.taskId : 0,
+        title,
+        priority,
+        description,
+      });
+      setShowModal(false);
+    }
   };
 
   return (
