@@ -4,34 +4,43 @@ import { TaskModal } from '../taskModal';
 import { Button as CustomButton } from '../button';
 import { TaskForm } from '../taskForm';
 
+type Task = {
+  taskId: number;
+  title: string;
+  priority: number;
+  description: string;
+};
+
 interface Props {
-  addTask: (task: {
-    taskId: number;
-    title: string;
-    priority: number;
-    description: string;
-  }) => void;
+  buttonTitle: string;
+  buttonName: string;
+  initialTask?: Task;
+  onSubmit: (task: Task) => void;
 }
 
-export default function AddTaskFormModal({ addTask }: Props) {
-  const [showAddTaskFormModal, setShowAddTaskFormModal] = useState(false);
-  const buttonHandler = () => {
-    setShowAddTaskFormModal(true);
-  };
+export default function AddTaskFormModal({
+  buttonTitle,
+  buttonName,
+  initialTask,
+  onSubmit,
+}: Props) {
+  const [showModal, setShowModal] = useState(false);
 
   return (
     <View>
       <TaskModal
-        showAddTaskFormModal={showAddTaskFormModal}
-        setShowAddTaskFormModal={setShowAddTaskFormModal}
+        showAddTaskFormModal={showModal}
+        setShowAddTaskFormModal={setShowModal}
       >
         <TaskForm
-          addTask={addTask}
-          setShowAddTaskFormModal={setShowAddTaskFormModal}
-          buttonName="Add Task"
+          buttonName={buttonName}
+          initialTask={initialTask}
+          onSubmit={onSubmit}
+          setShowModal={setShowModal}
         />
       </TaskModal>
-      <CustomButton title={'Add New Task'} onPress={buttonHandler} />
+
+      <CustomButton title={buttonTitle} onPress={() => setShowModal(true)} />
     </View>
   );
 }

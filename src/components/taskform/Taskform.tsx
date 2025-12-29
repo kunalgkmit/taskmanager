@@ -1,59 +1,79 @@
 import { TextInput, View } from 'react-native';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { styles } from './styles.ts';
 import { Button as CustomButton } from '../button';
 
+type Task = {
+  taskId: number;
+  title: string;
+  priority: number;
+  description: string;
+};
+
 interface Props {
   buttonName: string;
-  setShowAddTaskFormModal: (visible: boolean) => void;
-  addTask: (task: {
-    taskId: number;
-    title: string;
-    priority: number;
-    description: string;
-  }) => void;
+  initialTask?: Task;
+  onSubmit: (task: Task) => void;
+  setShowModal: (visible: boolean) => void;
 }
 
 export default function TaskForm({
-  addTask,
-  setShowAddTaskFormModal,
+  initialTask,
+  onSubmit,
+  setShowModal,
   buttonName,
 }: Props) {
-  const [title, setTaskTitle] = useState('');
-  const [priority, setTaskPriority] = useState(0);
-  const [description, setTaskDescription] = useState('');
-  const taskId = 0;
+  const [title, setTitle] = useState('');
+  const [priority, setPriority] = useState(0);
+  const [description, setDescription] = useState('');
 
-  const buttonHandler = () => {
-    addTask({ taskId, title, priority, description });
-    setShowAddTaskFormModal(false);
+  useEffect(() => {
+    if (initialTask) {
+      setTitle(initialTask.title);
+      setPriority(initialTask.priority);
+      setDescription(initialTask.description);
+    }
+  }, [initialTask]);
+
+  const submitHandler = () => {
+    onSubmit({
+      taskId: initialTask?.taskId ?? 0,
+      title,
+      priority,
+      description,
+    });
+    setShowModal(false);
   };
 
   const priorityHandler = (priority: string) => {
-    setTaskPriority(Number(priority));
+    setPriority(Number(priority));
   };
 
   return (
     <View>
       <TextInput
-        onChangeText={setTaskTitle}
+        value={title}
+        onChangeText={setTitle}
         placeholder="Enter task title"
         style={styles.userInput}
-        defaultValue={title}
       />
+
       <TextInput
+        value={priority.toString()}
         keyboardType="numeric"
-        onChangeText={priorityHandler}
+        onChangeText={text => setPriority(Number(text))}
         placeholder="Enter task priority"
         style={styles.userInput}
       />
+
       <TextInput
-        onChangeText={setTaskDescription}
+        value={description}
+        onChangeText={setDescription}
         placeholder="Enter task description"
         style={styles.userInput}
-        defaultValue={description}
       />
-      <CustomButton title={buttonName} onPress={buttonHandler} />
+
+      <CustomButton title={buttonName} onPress={submitHandler} />
     </View>
   );
 }
