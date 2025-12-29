@@ -3,56 +3,37 @@ import { View, Text } from 'react-native';
 import BouncyCheckbox from 'react-native-bouncy-checkbox';
 import { styles } from './styles.ts';
 import { Button as CustomButton } from '../button';
-import { TaskModal } from '../taskModal';
-import { TaskForm } from '../taskForm';
+import AddTaskModalForm from '../addTaskModalForm/AddTaskModalForm.tsx';
 
-interface Task {
+type Task = {
   taskId: number;
   title: string;
   priority: number;
   description: string;
+};
+
+interface Props {
+  task: Task;
+  deleteTask: (id: number) => void;
+  updateTask: (task: Task) => void;
 }
 
-export default function TaskCard(task: {
-  title: string;
-  priority: number;
-  description: string;
-  taskId: number;
-  deleteTask: (id: number) => void;
-  updateTask: (newTask: Task, idToUpdate: number) => void;
-}) {
-  const [isVisible, setIsVisible] = useState(false);
-  const handleDelete = () => {
-    task.deleteTask(task.taskId);
-  };
-  const handleUpdateButton = () => {
-    setIsVisible(true);
-  };
-  const updatedTask = (newTask: Task) => {
-    newTask = { ...newTask, taskId: task.taskId };
-    task.updateTask({ ...newTask }, task.taskId);
-  };
-
+export default function TaskCard({ task, deleteTask, updateTask }: Props) {
   return (
     <View style={styles.container}>
-      <BouncyCheckbox size={20} onPress={() => {}} />
+      <BouncyCheckbox onPress={() => {}} />
       <Text style={styles.item}>
         {task.title} - {task.priority}
       </Text>
-      <CustomButton title="UPDATE" onPress={handleUpdateButton} />
-      <CustomButton title="DELETE" onPress={handleDelete} />
-      {isVisible && (
-        <TaskModal
-          showAddTaskFormModal={isVisible}
-          setShowAddTaskFormModal={setIsVisible}
-        >
-          <TaskForm
-            addTask={updatedTask}
-            setShowAddTaskFormModal={setIsVisible}
-            buttonName="Update Task"
-          />
-        </TaskModal>
-      )}
+
+      <AddTaskModalForm
+        buttonTitle="Update"
+        buttonName="Update Task"
+        initialTask={task}
+        onSubmit={updateTask}
+      />
+
+      <CustomButton title="DELETE" onPress={() => deleteTask(task.taskId)} />
     </View>
   );
 }

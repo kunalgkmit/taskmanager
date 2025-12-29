@@ -13,11 +13,9 @@ type Task = {
 
 export default function Home() {
   const [tasks, setTasks] = useState<Task[]>([]);
-  const id = tasks.length + 1;
 
   const addTask = (task: Task) => {
-    task = { ...task, taskId: id };
-    setTasks([...tasks, task]);
+    setTasks(prev => [...prev, { ...task, taskId: prev.length + 1 }]);
   };
 
   const deleteTask = (idToDelete: number) => {
@@ -25,11 +23,12 @@ export default function Home() {
     setTasks(updatedTasks);
   };
 
-  const updateTask = (updatedTask: Task, idToUpdate: number) => {
-    const index = tasks.findIndex(item => item.taskId === idToUpdate);
-    const updatedTasks = [...tasks];
-    updatedTasks.splice(index, 1, updatedTask);
-    setTasks(updatedTasks);
+  const updateTask = (updatedTask: Task) => {
+    setTasks(prev =>
+      prev.map(task =>
+        task.taskId === updatedTask.taskId ? updatedTask : task,
+      ),
+    );
   };
 
   return (
@@ -37,12 +36,20 @@ export default function Home() {
       <FlatList
         data={tasks}
         renderItem={({ item }) => (
-          <TaskCard {...item} deleteTask={deleteTask} updateTask={updateTask} />
+          <TaskCard
+            task={item}
+            deleteTask={deleteTask}
+            updateTask={updateTask}
+          />
         )}
         ListEmptyComponent={<Text>No tasks to display</Text>}
       />
 
-      <AddTaskModalForm addTask={addTask} />
+      <AddTaskModalForm
+        buttonTitle="Add New Task"
+        buttonName="Add Task"
+        onSubmit={addTask}
+      />
     </View>
   );
 }
