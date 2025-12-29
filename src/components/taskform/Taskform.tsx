@@ -6,7 +6,7 @@ import { Button as CustomButton } from '../button';
 type Task = {
   taskId: number;
   title: string;
-  priority: number;
+  priority: string;
   description: string;
 };
 
@@ -24,7 +24,7 @@ export default function TaskForm({
   buttonName,
 }: Props) {
   const [title, setTitle] = useState('');
-  const [priority, setPriority] = useState(0);
+  const [priority, setPriority] = useState('');
   const [description, setDescription] = useState('');
 
   useEffect(() => {
@@ -45,10 +45,6 @@ export default function TaskForm({
     setShowModal(false);
   };
 
-  const priorityHandler = (priority: string) => {
-    setPriority(Number(priority));
-  };
-
   return (
     <View>
       <TextInput
@@ -61,7 +57,7 @@ export default function TaskForm({
       <TextInput
         value={priority.toString()}
         keyboardType="numeric"
-        onChangeText={text => setPriority(Number(text))}
+        onChangeText={setPriority}
         placeholder="Enter task priority"
         style={styles.userInput}
       />

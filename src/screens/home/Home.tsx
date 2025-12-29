@@ -7,7 +7,7 @@ import AddTaskModalForm from '../../components/addTaskModalForm';
 type Task = {
   taskId: number;
   title: string;
-  priority: number;
+  priority: string;
   description: string;
 };
 

@@ -8,7 +8,7 @@ import AddTaskModalForm from '../addTaskModalForm/AddTaskModalForm.tsx';
 type Task = {
   taskId: number;
   title: string;
-  priority: number;
+  priority: string;
   description: string;
 };
 
