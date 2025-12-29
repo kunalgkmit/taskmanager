@@ -8,34 +8,48 @@ interface Type {
 }
 
 interface Props {
+  priorityToUpdate: string;
   setTaskPriority: (priority: string) => void;
 }
 
-export default function TaskPriorityButton({ setTaskPriority }: Props) {
-  const priorityScale: Type[] = [
-    {
-      id: 1,
-      priorityLevel: 'HIGH',
-    },
-    {
-      id: 2,
-      priorityLevel: 'MEDIUM',
-    },
-    {
-      id: 3,
-      priorityLevel: 'LOW',
-    },
-  ];
-  const [selectedPriority, setSelectedPriority] = useState(0);
+const priorityScale: Type[] = [
+  {
+    id: 1,
+    priorityLevel: 'P1',
+  },
+  {
+    id: 2,
+    priorityLevel: 'P2',
+  },
+  {
+    id: 3,
+    priorityLevel: 'P3',
+  },
+];
+
+export default function TaskPriorityButton({
+  priorityToUpdate,
+  setTaskPriority,
+}: Props) {
+  let idToUpdate: number = 0;
+  const tempVar = priorityScale.find(item => {
+    if (item.priorityLevel === priorityToUpdate) {
+      idToUpdate = item.id;
+    }
+    return 0;
+  });
+  const [selectedPriority, setSelectedPriority] = useState(idToUpdate);
+
   return (
     <View style={styles.container}>
       {priorityScale.map((item, index) => (
         <TouchableOpacity
-          style={styles.touchableOpacity}
           key={index}
           onPress={() => {
             setSelectedPriority(item.id);
-            setTaskPriority(item.priorityLevel);
+            {
+              setTaskPriority(item.priorityLevel);
+            }
           }}
         >
           <View style={styles.radioWrapper}>

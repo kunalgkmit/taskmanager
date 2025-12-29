@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, ScrollView } from 'react-native';
 import BouncyCheckbox from 'react-native-bouncy-checkbox';
 import { styles } from './styles.ts';
 import { Button as CustomButton } from '../button';
@@ -36,29 +36,45 @@ export default function TaskCard(task: {
   return (
     <View style={styles.container}>
       <View style={styles.wrapper}>
-        <BouncyCheckbox size={30} onPress={() => {}} fillColor="#88D66C" />
-        <View style={styles.textContainer}>
-          <Text style={styles.item}>
-            {task.title} - {task.priority}
-          </Text>
-          <Text style={styles.description}>{task.description}</Text>
+        <View style={styles.checkBoxWrapper}>
+          <BouncyCheckbox
+            size={30}
+            onPress={() => {}}
+            fillColor="#88D66C"
+            iconStyle={styles.checkBoxIcon}
+            innerIconStyle={styles.checkBoxInner}
+          />
+          <Text style={styles.priority}>{task.priority}</Text>
         </View>
+        <View style={styles.textContainer}>
+          <ScrollView>
+            <Text style={styles.item} numberOfLines={2}>
+              {task.title}
+            </Text>
+            <Text style={styles.description}>{task.description}</Text>
+          </ScrollView>
+        </View>
+
         {isVisible && (
           <TaskModal
             showAddTaskFormModal={isVisible}
             setShowAddTaskFormModal={setIsVisible}
+            modalName="Update Task"
           >
             <TaskForm
               addTask={updatedTask}
               setShowAddTaskFormModal={setIsVisible}
               buttonName="Update Task"
+              titleToUpdate={task.title}
+              descriptionToUpdate={task.description}
+              priorityToUpdate={task.priority}
             />
           </TaskModal>
         )}
       </View>
       <View style={styles.buttonContainer}>
-        <CustomButton title="UPDATE" onPress={handleUpdateButton} />
         <CustomButton title="DELETE" onPress={handleDelete} />
+        <CustomButton title="UPDATE" onPress={handleUpdateButton} />
       </View>
     </View>
   );

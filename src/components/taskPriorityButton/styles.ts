@@ -2,9 +2,8 @@ import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    alignSelf: 'center',
     justifyContent: 'center',
+    flexDirection: 'row',
   },
   buttonText: {
     fontSize: 15,
@@ -13,6 +12,7 @@ export const styles = StyleSheet.create({
     height: 30,
     width: 30,
     borderWidth: 1,
+    borderColor: '#7E60BF',
     borderRadius: 15,
     margin: 10,
   },
@@ -21,11 +21,10 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
   },
   radioBg: {
-    backgroundColor: 'black',
+    backgroundColor: '#7E60BF',
     height: 23,
     width: 23,
     borderRadius: 20,
     margin: 2.5,
   },
-  touchableOpacity: {},
 });

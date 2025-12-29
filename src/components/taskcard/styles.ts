@@ -2,27 +2,25 @@ import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#D6A99D',
+    backgroundColor: '#CDC1FF',
     top: 10,
     width: 350,
     margin: 10,
     borderRadius: 25,
     padding: 10,
     justifyContent: 'center',
-    borderWidth: 2,
-    borderColor: 'brown',
   },
   wrapper: {
-    backgroundColor: '#FFFECE',
+    backgroundColor: '#EBEAFF',
     alignContent: 'flex-end',
     height: 170,
     borderRadius: 25,
     padding: 10,
-    borderColor: 'brown',
-    borderWidth: 1,
+    elevation: 10,
+    shadowColor: 'grey',
   },
   item: {
-    fontSize: 30,
+    fontSize: 25,
     fontWeight: 'bold',
   },
   description: {
@@ -30,11 +28,28 @@ export const styles = StyleSheet.create({
   },
   buttonContainer: {
     margin: 10,
-    marginRight: 40,
-    marginLeft: 40,
+    flexDirection: 'row',
   },
   textContainer: {
-    margin: 5,
-    marginLeft: 20,
+    marginBottom: 40,
+  },
+  checkBoxInner: {
+    borderRadius: 0,
+    borderWidth: 2,
+    borderColor: 'black',
+  },
+  checkBoxIcon: {
+    borderColor: 'green',
+    borderRadius: 0,
+  },
+  checkBoxWrapper: {
+    flex: 1,
+    flexDirection: 'row',
+  },
+  priority: {
+    fontSize: 30,
+    fontWeight: 'bold',
+    marginRight: 6,
+    marginLeft: 'auto',
   },
 });
