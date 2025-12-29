@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import { TaskModal } from '../taskModal';
 import { Button as CustomButton } from '../button';
 import { TaskForm } from '../taskForm';
+import { styles } from './styles';
+import FloatingActionButton from '../floatingActionButton/FloatingActionButton';
 
 interface Props {
   addTask: (task: {
@@ -24,14 +26,20 @@ export default function AddTaskFormModal({ addTask }: Props) {
       <TaskModal
         showAddTaskFormModal={showAddTaskFormModal}
         setShowAddTaskFormModal={setShowAddTaskFormModal}
+        modalName="Add Task"
       >
         <TaskForm
+          titleToUpdate=""
+          priorityToUpdate=""
+          descriptionToUpdate=""
           addTask={addTask}
           setShowAddTaskFormModal={setShowAddTaskFormModal}
           buttonName="Add Task"
         />
       </TaskModal>
-      <CustomButton title={'Add New Task'} onPress={buttonHandler} />
+      <View style={styles.button}>
+        <FloatingActionButton title={'Add'} onPress={buttonHandler} />
+      </View>
     </View>
   );
 }
