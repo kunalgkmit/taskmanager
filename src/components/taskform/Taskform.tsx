@@ -1,7 +1,8 @@
-import { TextInput, View } from 'react-native';
+import { Text, TextInput, View } from 'react-native';
 import React, { useState, useEffect } from 'react';
 import { styles } from './styles.ts';
 import { Button as CustomButton } from '../button';
+import TaskPriorityButton from '../taskPriorityButton/TaskPriorityButton.tsx';
 
 type Task = {
   taskId: number;
@@ -54,12 +55,10 @@ export default function TaskForm({
         style={styles.userInput}
       />
 
-      <TextInput
-        value={priority.toString()}
-        keyboardType="numeric"
-        onChangeText={setPriority}
-        placeholder="Enter task priority"
-        style={styles.userInput}
+      <Text>Select task Priority</Text>
+      <TaskPriorityButton
+        priorityToUpdate={initialTask ? initialTask.priority : ''}
+        setTaskPriority={setPriority}
       />
 
       <TextInput
