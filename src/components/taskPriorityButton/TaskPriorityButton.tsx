@@ -31,7 +31,6 @@ export default function TaskPriorityButton({
   priorityToUpdate,
   setTaskPriority,
 }: Props) {
-  console.log('Update>>>>>', priorityToUpdate);
   let idToUpdate: number = 0;
   const tempVar = priorityScale.find(item => {
     if (item.priorityLevel === priorityToUpdate) {
