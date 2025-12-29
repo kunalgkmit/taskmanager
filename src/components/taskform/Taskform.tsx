@@ -2,7 +2,7 @@ import { Text, TextInput, View } from 'react-native';
 import React, { useState, useEffect } from 'react';
 import { styles } from './styles.ts';
 import { Button as CustomButton } from '../button';
-import TaskPriorityButton from '../taskPriorityButton/TaskPriorityButton.tsx';
+import { TaskPriorityButton } from '../taskPriorityButton';
 
 type Task = {
   taskId: number;

@@ -3,7 +3,7 @@ import { View, Text } from 'react-native';
 import BouncyCheckbox from 'react-native-bouncy-checkbox';
 import { styles } from './styles.ts';
 import { Button as CustomButton } from '../button';
-import AddTaskModalForm from '../addTaskModalForm/AddTaskModalForm.tsx';
+import AddTaskModalForm from '../addTaskModalForm';
 
 type Task = {
   taskId: number;
