@@ -2,17 +2,17 @@ import React, { useState } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { styles } from './styles';
 
-interface Type {
+interface PriorityType {
   id: number;
   priorityLevel: string;
 }
 
-interface Props {
+interface TaskFormProps {
   priorityToUpdate: string;
   setTaskPriority: (priority: string) => void;
 }
 
-const priorityScale: Type[] = [
+const priorityScale: PriorityType[] = [
   {
     id: 1,
     priorityLevel: 'P1',
@@ -30,7 +30,7 @@ const priorityScale: Type[] = [
 export default function TaskPriorityButton({
   priorityToUpdate,
   setTaskPriority,
-}: Props) {
+}: TaskFormProps) {
   let idToUpdate: number = 0;
   const tempVar = priorityScale.find(item => {
     if (item.priorityLevel === priorityToUpdate) {
@@ -38,20 +38,18 @@ export default function TaskPriorityButton({
     }
     return 0;
   });
+  const buttonHandler = (item: PriorityType) => {
+    setSelectedPriority(item.id);
+    {
+      setTaskPriority(item.priorityLevel);
+    }
+  };
   const [selectedPriority, setSelectedPriority] = useState(idToUpdate);
 
   return (
     <View style={styles.container}>
       {priorityScale.map((item, index) => (
-        <TouchableOpacity
-          key={index}
-          onPress={() => {
-            setSelectedPriority(item.id);
-            {
-              setTaskPriority(item.priorityLevel);
-            }
-          }}
-        >
+        <TouchableOpacity key={index} onPress={() => buttonHandler(item)}>
           <View style={styles.radioWrapper}>
             <View style={styles.radio}>
               {selectedPriority === item.id ? (

@@ -11,7 +11,7 @@ type Task = {
   description: string;
 };
 
-interface Props {
+interface HomeProps {
   buttonTitle: string;
   buttonName: string;
   initialTask?: Task | null;
@@ -25,7 +25,7 @@ export default function AddTaskFormModal({
   initialTask,
   onSubmit,
   onClose,
-}: Props) {
+}: HomeProps) {
   const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
