@@ -15,7 +15,6 @@ interface HomeProps {
 }
 
 export default function AddTaskFormModal({
-  buttonTitle,
   buttonName,
   initialTask,
   onSubmit,
@@ -56,7 +55,7 @@ export default function AddTaskFormModal({
         />
       </TaskModal>
 
-      <CustomButton title={buttonTitle} onPress={buttonHandler} />
+      <CustomButton title="Add New Task" onPress={buttonHandler} />
     </View>
   );
 }
