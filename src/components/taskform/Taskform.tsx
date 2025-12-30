@@ -46,6 +46,7 @@ export default function TaskForm({
         title,
         priority,
         description,
+        status: false,
       });
       setShowModal(false);
     }

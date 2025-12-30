@@ -4,7 +4,7 @@ import { styles } from './styles.ts';
 import { Button as CustomButton } from '../button';
 import { Task } from '../../types/type';
 
-interface Props {
+interface AddTaskModalFormProps {
   resetEditStates: () => void;
   showAddTaskFormModal: boolean;
   initialTask?: Task | null;
@@ -18,7 +18,7 @@ export default function TaskModal({
   children,
   resetEditStates,
   initialTask,
-}: Props) {
+}: AddTaskModalFormProps) {
   const closeHandler = () => {
     setShowAddTaskFormModal(false);
     if (initialTask) {
