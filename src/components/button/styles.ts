@@ -8,10 +8,12 @@ export const styles = StyleSheet.create({
     padding: 10,
     alignItems: 'center',
     margin: 3,
-    width: 130,
+    width: 115,
+    height: 40,
   },
   text: {
     fontWeight: 'bold',
-    color: '#7E60BF',
+    color: '#2C2C2E',
+    fontSize: 13,
   },
 });
