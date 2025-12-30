@@ -1,9 +1,9 @@
 import { View } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import { TaskModal } from '../taskModal';
-import { Button as CustomButton } from '../button';
 import { TaskForm } from '../taskForm';
 import { Task } from '../../types/type';
+import FloatingActionButton from '../floatingActionButton';
 
 interface HomeProps {
   buttonTitle: string;
@@ -55,7 +55,7 @@ export default function AddTaskFormModal({
         />
       </TaskModal>
 
-      <CustomButton title="Add New Task" onPress={buttonHandler} />
+      <FloatingActionButton onPress={buttonHandler} />
     </View>
   );
 }
