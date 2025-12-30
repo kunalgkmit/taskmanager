@@ -58,10 +58,11 @@ export default function TaskForm({
         value={title}
         onChangeText={setTitle}
         placeholder="Enter task title"
-        style={styles.userInput}
+        placeholderTextColor={error ? 'red' : ''}
+        style={error ? styles.userInput : styles.errorUserInput}
       />
 
-      <Text>Priority</Text>
+      <Text style={error ? styles.priorityErrorText : null}>Priority</Text>
       <TaskPriorityButton
         priorityToUpdate={initialTask ? initialTask.priority : ''}
         setTaskPriority={setPriority}
@@ -71,7 +72,8 @@ export default function TaskForm({
         value={description}
         onChangeText={setDescription}
         placeholder="Enter task description"
-        style={styles.userInput}
+        placeholderTextColor={error ? 'red' : ''}
+        style={error ? styles.userInput : styles.errorUserInput}
       />
 
       <CustomButton title={buttonName} onPress={submitHandler} />
