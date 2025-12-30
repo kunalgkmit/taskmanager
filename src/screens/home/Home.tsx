@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { View, FlatList } from 'react-native';
+import { View, FlatList, Text } from 'react-native';
 import { styles } from './styles.ts';
 import { TaskCard } from '../../components/taskCard';
 import AddTaskModalForm from '../../components/addTaskModalForm';
 import { Task } from '../../types/type';
 import NoTasksToDisplay from '../../components/noTasksToDisplay';
+import AppBar from '../../components/appBar';
 
 export default function Home() {
   const [tasks, setTasks] = useState<Task[]>([]);
@@ -43,6 +44,7 @@ export default function Home() {
 
   return (
     <View style={styles.container}>
+      <AppBar />
       <FlatList
         scrollEnabled={tasks.length > 0}
         showsVerticalScrollIndicator={false}
