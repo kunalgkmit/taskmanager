@@ -5,13 +5,17 @@ import { styles } from './styles.ts';
 import { Button as CustomButton } from '../button';
 import { Task } from '../../types/type';
 
-interface Props {
+interface HomeProps {
   task: Task;
   deleteTask: (id: number) => void;
   onUpdatePress: (task: Task) => void;
 }
 
-export default function TaskCard({ task, deleteTask, onUpdatePress }: Props) {
+export default function TaskCard({
+  task,
+  deleteTask,
+  onUpdatePress,
+}: HomeProps) {
   return (
     <View style={styles.container}>
       <BouncyCheckbox
