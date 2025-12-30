@@ -11,9 +11,9 @@ type Task = {
   description: string;
 };
 
-interface Props {
+interface TaskProps {
   buttonName: string;
-  initialTask?: Task | null;
+  initialTask?: Task;
   onSubmit: (task: Task) => void;
   setShowModal: (visible: boolean) => void;
 }
@@ -23,7 +23,7 @@ export default function TaskForm({
   onSubmit,
   setShowModal,
   buttonName,
-}: Props) {
+}: TaskProps) {
   const [title, setTitle] = useState('');
   const [priority, setPriority] = useState('');
   const [description, setDescription] = useState('');
