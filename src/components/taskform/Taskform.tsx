@@ -54,27 +54,30 @@ export default function TaskForm({
 
   return (
     <View style={styles.container}>
+      <Text style={styles.inputLabel}>Title</Text>
       <TextInput
         value={title}
         onChangeText={setTitle}
         placeholder="Enter task title"
-        placeholderTextColor={error ? 'red' : ''}
-        style={error ? styles.userInput : styles.errorUserInput}
+        style={styles.userInput}
       />
 
-      <Text style={error ? styles.priorityErrorText : null}>Priority</Text>
+      <Text style={styles.inputLabel}>Priority</Text>
       <TaskPriorityButton
         priorityToUpdate={initialTask ? initialTask.priority : ''}
         setTaskPriority={setPriority}
       />
 
+      <Text style={styles.inputLabel}>Description</Text>
       <TextInput
+        aria-label=""
         value={description}
         onChangeText={setDescription}
         placeholder="Enter task description"
-        placeholderTextColor={error ? 'red' : ''}
-        style={error ? styles.userInput : styles.errorUserInput}
+        style={styles.userInput}
       />
+
+      {error ? <Text style={styles.errorMessage}>Enter All Fields</Text> : null}
 
       <CustomButton title={buttonName} onPress={submitHandler} />
     </View>
