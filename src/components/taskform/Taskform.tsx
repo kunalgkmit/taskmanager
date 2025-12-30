@@ -7,7 +7,7 @@ import { Task } from '../../types/type';
 
 interface TaskProps {
   buttonName: string;
-  initialTask?: Task | null;
+  initialTask?: Task;
   onSubmit: (task: Task) => void;
   setShowModal: (visible: boolean) => void;
 }

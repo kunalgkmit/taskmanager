@@ -7,7 +7,7 @@ import { Task } from '../../types/type';
 interface AddTaskModalFormProps {
   resetEditStates: () => void;
   showAddTaskFormModal: boolean;
-  initialTask?: Task | null;
+  initialTask?: Task;
   setShowAddTaskFormModal: (visible: boolean) => void;
   children: ReactNode;
 }

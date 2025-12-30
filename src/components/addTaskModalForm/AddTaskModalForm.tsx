@@ -8,7 +8,7 @@ import { Task } from '../../types/type';
 interface HomeProps {
   buttonTitle: string;
   buttonName: string;
-  initialTask?: Task | null;
+  initialTask?: Task;
   onSubmit: (task: Task) => void;
   resetEditStates: () => void;
 }

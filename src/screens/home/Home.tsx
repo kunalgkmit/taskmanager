@@ -7,7 +7,7 @@ import { Task } from '../../types/type';
 
 export default function Home() {
   const [tasks, setTasks] = useState<Task[]>([]);
-  const [selectedTask, setSelectedTask] = useState<Task | null>(null);
+  const [selectedTask, setSelectedTask] = useState<Task | undefined>(undefined);
   const [isEditMode, setIsEditMode] = useState(false);
 
   const addTask = (task: Task) => {
@@ -29,7 +29,7 @@ export default function Home() {
       ),
     );
     setIsEditMode(false);
-    setSelectedTask(null);
+    setSelectedTask(undefined);
   };
   const onUpdatePress = (task: Task) => {
     setSelectedTask(task);
@@ -37,7 +37,7 @@ export default function Home() {
   };
   const resetEditMode = () => {
     setIsEditMode(false);
-    setSelectedTask(null);
+    setSelectedTask(undefined);
   };
 
   return (
@@ -57,7 +57,7 @@ export default function Home() {
       <AddTaskModalForm
         buttonTitle={'Add New Task'}
         buttonName={isEditMode ? 'Update Task' : 'Add Task'}
-        initialTask={isEditMode ? selectedTask : null}
+        initialTask={isEditMode ? selectedTask : undefined}
         onSubmit={isEditMode ? updateTask : addTask}
         resetEditStates={resetEditMode}
       />
