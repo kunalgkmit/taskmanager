@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { styles } from './styles';
 
@@ -31,20 +31,23 @@ export default function TaskPriorityButton({
   priorityToUpdate,
   setTaskPriority,
 }: TaskFormProps) {
-  let idToUpdate: number = 0;
-  const tempVar = priorityScale.find(item => {
-    if (item.priorityLevel === priorityToUpdate) {
-      idToUpdate = item.id;
+  const [selectedPriority, setSelectedPriority] = useState(0);
+
+  useEffect(() => {
+    if (!priorityToUpdate) return;
+
+    const matchedItem = priorityScale.find(
+      item => item.priorityLevel === priorityToUpdate,
+    );
+    if (matchedItem) {
+      setSelectedPriority(matchedItem.id);
     }
-    return 0;
-  });
+  }, [priorityToUpdate]);
+
   const buttonHandler = (item: PriorityType) => {
     setSelectedPriority(item.id);
-    {
-      setTaskPriority(item.priorityLevel);
-    }
+    setTaskPriority(item.priorityLevel);
   };
-  const [selectedPriority, setSelectedPriority] = useState(idToUpdate);
 
   return (
     <View style={styles.container}>
@@ -53,7 +56,7 @@ export default function TaskPriorityButton({
           <View style={styles.radioWrapper}>
             <View style={styles.radio}>
               {selectedPriority === item.id ? (
-                <View style={styles.radioBg}></View>
+                <View style={styles.radioBg} />
               ) : null}
             </View>
             <Text style={styles.buttonText}>{item.priorityLevel}</Text>
