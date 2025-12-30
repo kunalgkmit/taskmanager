@@ -36,7 +36,6 @@ export default function Home() {
   };
   const onUpdatePress = (task: Task) => {
     setSelectedTask(task);
-    console.log(selectedTask);
     setIsEditMode(true);
   };
   const resetEditMode = () => {
