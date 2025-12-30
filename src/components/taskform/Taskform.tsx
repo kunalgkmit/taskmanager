@@ -41,9 +41,9 @@ export default function TaskForm({
     const validateTitle = title.trim() === '';
     const validatePriority = priority.trim() === '';
     const validateDescription = description.trim() === '';
-    setError(validateTitle || validatePriority || validateDescription);
     const validateError =
       validateTitle || validatePriority || validateDescription;
+    setError(validateError);
     if (!validateError) {
       onSubmit({
         taskId: initialTask ? initialTask.taskId : 0,
