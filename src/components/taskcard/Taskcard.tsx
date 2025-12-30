@@ -3,14 +3,7 @@ import { View, Text } from 'react-native';
 import BouncyCheckbox from 'react-native-bouncy-checkbox';
 import { styles } from './styles.ts';
 import { Button as CustomButton } from '../button';
-import AddTaskModalForm from '../addTaskModalForm';
-
-type Task = {
-  taskId: number;
-  title: string;
-  priority: string;
-  description: string;
-};
+import { Task } from '../../types/type';
 
 interface Props {
   task: Task;

@@ -3,13 +3,7 @@ import { View, Text, FlatList } from 'react-native';
 import { styles } from './styles.ts';
 import { TaskCard } from '../../components/taskCard';
 import AddTaskModalForm from '../../components/addTaskModalForm';
-
-type Task = {
-  taskId: number;
-  title: string;
-  priority: string;
-  description: string;
-};
+import { Task } from '../../types/type';
 
 export default function Home() {
   const [tasks, setTasks] = useState<Task[]>([]);
@@ -62,7 +56,7 @@ export default function Home() {
         buttonName={isEditMode ? 'Update Task' : 'Add Task'}
         initialTask={isEditMode ? selectedTask : null}
         onSubmit={isEditMode ? updateTask : addTask}
-        onClose={resetEditMode}
+        resetEditStates={resetEditMode}
       />
     </View>
   );

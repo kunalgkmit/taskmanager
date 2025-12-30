@@ -3,20 +3,14 @@ import React, { useEffect, useState } from 'react';
 import { TaskModal } from '../taskModal';
 import { Button as CustomButton } from '../button';
 import { TaskForm } from '../taskForm';
-
-type Task = {
-  taskId: number;
-  title: string;
-  priority: string;
-  description: string;
-};
+import { Task } from '../../types/type';
 
 interface HomeProps {
   buttonTitle: string;
   buttonName: string;
   initialTask?: Task | null;
   onSubmit: (task: Task) => void;
-  onClose: () => void;
+  resetEditStates: () => void;
 }
 
 export default function AddTaskFormModal({
@@ -24,7 +18,7 @@ export default function AddTaskFormModal({
   buttonName,
   initialTask,
   onSubmit,
-  onClose,
+  resetEditStates,
 }: HomeProps) {
   const [showModal, setShowModal] = useState(false);
 
@@ -34,20 +28,20 @@ export default function AddTaskFormModal({
     }
   }, [initialTask]);
 
-  useEffect(() => {
-    if (!showModal && initialTask) {
-      onClose();
-    }
-  }, [showModal]);
-
   const handleSubmit = (task: Task) => {
     onSubmit(task);
     setShowModal(false);
   };
 
+  const buttonHandler = () => {
+    setShowModal(true);
+  };
+
   return (
     <View>
       <TaskModal
+        resetEditStates={resetEditStates}
+        initialTask={initialTask}
         showAddTaskFormModal={showModal}
         setShowAddTaskFormModal={setShowModal}
       >
@@ -59,7 +53,7 @@ export default function AddTaskFormModal({
         />
       </TaskModal>
 
-      <CustomButton title={buttonTitle} onPress={() => setShowModal(true)} />
+      <CustomButton title={buttonTitle} onPress={buttonHandler} />
     </View>
   );
 }

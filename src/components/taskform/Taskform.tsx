@@ -3,17 +3,11 @@ import React, { useState, useEffect } from 'react';
 import { styles } from './styles.ts';
 import { Button as CustomButton } from '../button';
 import { TaskPriorityButton } from '../taskPriorityButton';
-
-type Task = {
-  taskId: number;
-  title: string;
-  priority: string;
-  description: string;
-};
+import { Task } from '../../types/type';
 
 interface TaskProps {
   buttonName: string;
-  initialTask?: Task;
+  initialTask?: Task | null;
   onSubmit: (task: Task) => void;
   setShowModal: (visible: boolean) => void;
 }
