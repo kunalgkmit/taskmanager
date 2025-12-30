@@ -11,7 +11,10 @@ export default function Home() {
   const [isEditMode, setIsEditMode] = useState(false);
 
   const addTask = (task: Task) => {
-    setTasks(prev => [...prev, { ...task, taskId: prev.length + 1 }]);
+    setTasks(prev => [
+      ...prev,
+      { ...task, taskId: prev.length + 1, status: false },
+    ]);
   };
 
   const deleteTask = (idToDelete: number) => {

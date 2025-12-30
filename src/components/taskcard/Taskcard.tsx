@@ -14,7 +14,11 @@ interface Props {
 export default function TaskCard({ task, deleteTask, onUpdatePress }: Props) {
   return (
     <View style={styles.container}>
-      <BouncyCheckbox onPress={() => {}} />
+      <BouncyCheckbox
+        onPress={(isChecked: boolean) => {
+          task.status = isChecked;
+        }}
+      />
       <Text style={styles.item}>
         {task.title} - {task.priority}
       </Text>
