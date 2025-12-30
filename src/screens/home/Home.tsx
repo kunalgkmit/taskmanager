@@ -4,6 +4,7 @@ import { styles } from './styles.ts';
 import { TaskCard } from '../../components/taskCard';
 import AddTaskModalForm from '../../components/addTaskModalForm';
 import { Task } from '../../types/type';
+import NoTasksToDiaplay from '../../components/noTasksToDisplay';
 
 export default function Home() {
   const [tasks, setTasks] = useState<Task[]>([]);
@@ -43,6 +44,8 @@ export default function Home() {
   return (
     <View style={styles.container}>
       <FlatList
+        scrollEnabled={tasks.length > 0}
+        showsVerticalScrollIndicator={false}
         data={tasks}
         renderItem={({ item }) => (
           <TaskCard
@@ -51,7 +54,7 @@ export default function Home() {
             onUpdatePress={onUpdatePress}
           />
         )}
-        ListEmptyComponent={<Text>No tasks to display</Text>}
+        ListEmptyComponent={<NoTasksToDiaplay />}
       />
 
       <AddTaskModalForm
