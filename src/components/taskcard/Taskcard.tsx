@@ -16,13 +16,18 @@ export default function TaskCard({
   deleteTask,
   onUpdatePress,
 }: HomeProps) {
+  const [taskComplete, setTaskComplete] = useState(false);
+  const checkBoxHandler = (isChecked: boolean) => {
+    task.status = isChecked;
+    setTaskComplete(isChecked);
+  };
   return (
     <View style={styles.container}>
       <View style={styles.rowContent}>
         <BouncyCheckbox
           style={{ marginBottom: 33 }}
           onPress={(isChecked: boolean) => {
-            task.status = isChecked;
+            checkBoxHandler(isChecked);
           }}
           fillColor="#78787bff"
           unFillColor="white"
@@ -44,11 +49,16 @@ export default function TaskCard({
         <Text style={styles.priority}>{task.priority}</Text>
       </View>
 
-      <View style={styles.buttonContainer}>
-        <CustomButton title="DELETE" onPress={() => deleteTask(task.taskId)} />
+      {!taskComplete ? (
+        <View style={styles.buttonContainer}>
+          <CustomButton
+            title="DELETE"
+            onPress={() => deleteTask(task.taskId)}
+          />
 
-        <CustomButton title="UPDATE" onPress={() => onUpdatePress(task)} />
-      </View>
+          <CustomButton title="UPDATE" onPress={() => onUpdatePress(task)} />
+        </View>
+      ) : null}
     </View>
   );
 }
