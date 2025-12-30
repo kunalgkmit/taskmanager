@@ -1,4 +1,4 @@
-import { View, Modal } from 'react-native';
+import { View, Modal, Text } from 'react-native';
 import React, { ReactNode } from 'react';
 import { styles } from './styles.ts';
 import { Button as CustomButton } from '../button';
@@ -10,6 +10,7 @@ interface AddTaskModalFormProps {
   initialTask?: Task;
   setShowAddTaskFormModal: (visible: boolean) => void;
   children: ReactNode;
+  modalName: string;
 }
 
 export default function TaskModal({
@@ -18,6 +19,7 @@ export default function TaskModal({
   children,
   resetEditStates,
   initialTask,
+  modalName,
 }: AddTaskModalFormProps) {
   const closeHandler = () => {
     setShowAddTaskFormModal(false);
@@ -28,6 +30,7 @@ export default function TaskModal({
   return (
     <Modal transparent={true} visible={showAddTaskFormModal}>
       <View style={styles.modalView}>
+        <Text>{modalName}</Text>
         {children}
         <CustomButton title="Close" onPress={closeHandler} />
       </View>

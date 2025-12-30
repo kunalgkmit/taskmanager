@@ -60,6 +60,7 @@ export default function Home() {
       <AddTaskModalForm
         buttonTitle={'Add New Task'}
         buttonName={isEditMode ? 'Update Task' : 'Add Task'}
+        modalName={isEditMode ? 'Update Task' : 'Add Task'}
         initialTask={isEditMode ? selectedTask : undefined}
         onSubmit={isEditMode ? updateTask : addTask}
         resetEditStates={resetEditMode}

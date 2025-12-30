@@ -11,6 +11,7 @@ interface HomeProps {
   initialTask?: Task;
   onSubmit: (task: Task) => void;
   resetEditStates: () => void;
+  modalName: string;
 }
 
 export default function AddTaskFormModal({
@@ -19,6 +20,7 @@ export default function AddTaskFormModal({
   initialTask,
   onSubmit,
   resetEditStates,
+  modalName,
 }: HomeProps) {
   const [showModal, setShowModal] = useState(false);
 
@@ -40,6 +42,7 @@ export default function AddTaskFormModal({
   return (
     <View>
       <TaskModal
+        modalName={modalName}
         resetEditStates={resetEditStates}
         initialTask={initialTask}
         showAddTaskFormModal={showModal}
