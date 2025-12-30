@@ -14,6 +14,7 @@ type Task = {
 export default function Home() {
   const [tasks, setTasks] = useState<Task[]>([]);
   const [selectedTask, setSelectedTask] = useState<Task | null>(null);
+  const [isEditMode, setIsEditMode] = useState(false);
 
   const addTask = (task: Task) => {
     setTasks(prev => [...prev, { ...task, taskId: prev.length + 1 }]);
@@ -30,10 +31,17 @@ export default function Home() {
         task.taskId === updatedTask.taskId ? updatedTask : task,
       ),
     );
+    setIsEditMode(false);
+    setSelectedTask(null);
   };
   const onUpdatePress = (task: Task) => {
     setSelectedTask(task);
     console.log(selectedTask);
+    setIsEditMode(true);
+  };
+  const resetEditMode = () => {
+    setIsEditMode(false);
+    setSelectedTask(null);
   };
 
   return (
@@ -51,9 +59,11 @@ export default function Home() {
       />
 
       <AddTaskModalForm
-        buttonTitle="Add New Task"
-        buttonName="Add Task"
-        onSubmit={addTask}
+        buttonTitle={'Add New Task'}
+        buttonName={isEditMode ? 'Update Task' : 'Add Task'}
+        initialTask={isEditMode ? selectedTask : null}
+        onSubmit={isEditMode ? updateTask : addTask}
+        onClose={resetEditMode}
       />
     </View>
   );

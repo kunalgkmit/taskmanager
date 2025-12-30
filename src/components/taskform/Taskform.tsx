@@ -13,7 +13,7 @@ type Task = {
 
 interface Props {
   buttonName: string;
-  initialTask?: Task;
+  initialTask?: Task | null;
   onSubmit: (task: Task) => void;
   setShowModal: (visible: boolean) => void;
 }

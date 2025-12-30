@@ -1,5 +1,5 @@
 import { View } from 'react-native';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { TaskModal } from '../taskModal';
 import { Button as CustomButton } from '../button';
 import { TaskForm } from '../taskForm';
@@ -14,8 +14,9 @@ type Task = {
 interface Props {
   buttonTitle: string;
   buttonName: string;
-  initialTask?: Task;
+  initialTask?: Task | null;
   onSubmit: (task: Task) => void;
+  onClose: () => void;
 }
 
 export default function AddTaskFormModal({
@@ -23,8 +24,26 @@ export default function AddTaskFormModal({
   buttonName,
   initialTask,
   onSubmit,
+  onClose,
 }: Props) {
   const [showModal, setShowModal] = useState(false);
+
+  useEffect(() => {
+    if (initialTask) {
+      setShowModal(true);
+    }
+  }, [initialTask]);
+
+  useEffect(() => {
+    if (!showModal && initialTask) {
+      onClose();
+    }
+  }, [showModal]);
+
+  const handleSubmit = (task: Task) => {
+    onSubmit(task);
+    setShowModal(false);
+  };
 
   return (
     <View>
@@ -35,7 +54,7 @@ export default function AddTaskFormModal({
         <TaskForm
           buttonName={buttonName}
           initialTask={initialTask}
-          onSubmit={onSubmit}
+          onSubmit={handleSubmit}
           setShowModal={setShowModal}
         />
       </TaskModal>
