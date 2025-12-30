@@ -18,12 +18,13 @@ export default function TaskCard({
 }: HomeProps) {
   return (
     <View style={styles.container}>
-      <View style={styles.checkBoxWrapper}>
+      <View style={styles.rowContent}>
         <BouncyCheckbox
+          style={{ marginBottom: 33 }}
           onPress={(isChecked: boolean) => {
             task.status = isChecked;
           }}
-          fillColor="#88D66C"
+          fillColor="#78787bff"
           unFillColor="white"
           iconStyle={styles.checkBoxIcon}
           innerIconStyle={styles.checkBoxInner}

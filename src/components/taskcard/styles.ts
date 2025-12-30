@@ -19,22 +19,17 @@ export const styles = StyleSheet.create({
     fontSize: 13,
     lineHeight: 18,
   },
-  rowContent: {
-    flexDirection: 'row',
-    marginLeft: 30,
-    marginRight: 35,
-    backgroundColor: 'red',
-  },
   textContent: {
     flex: 1,
-    marginLeft: 10,
+    marginLeft: 5,
+    marginRight: 20,
   },
   buttonContainer: {
     flexDirection: 'row',
     justifyContent: 'center',
     marginTop: 10,
   },
-  checkBoxWrapper: {
+  rowContent: {
     flexDirection: 'row',
   },
   priority: {
