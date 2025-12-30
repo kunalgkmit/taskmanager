@@ -39,11 +39,13 @@ export default function TaskForm({
 
   const submitHandler = () => {
     const validateTitle = title.trim() === '';
-    const validatePriority = priority.trim() === '';
+    const validatePriority = priority === '';
     const validateDescription = description.trim() === '';
+
     const validateError =
       validateTitle || validatePriority || validateDescription;
     setError(validateError);
+
     if (!validateError) {
       onSubmit({
         taskId: initialTask ? initialTask.taskId : 0,
@@ -64,7 +66,7 @@ export default function TaskForm({
         style={styles.userInput}
       />
 
-      <Text>Select task Priority</Text>
+      <Text>Priority</Text>
       <TaskPriorityButton
         priorityToUpdate={initialTask ? initialTask.priority : ''}
         setTaskPriority={setPriority}
