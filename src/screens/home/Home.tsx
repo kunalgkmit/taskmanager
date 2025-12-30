@@ -13,6 +13,7 @@ type Task = {
 
 export default function Home() {
   const [tasks, setTasks] = useState<Task[]>([]);
+  const [selectedTask, setSelectedTask] = useState<Task | null>(null);
 
   const addTask = (task: Task) => {
     setTasks(prev => [...prev, { ...task, taskId: prev.length + 1 }]);
@@ -30,6 +31,10 @@ export default function Home() {
       ),
     );
   };
+  const onUpdatePress = (task: Task) => {
+    setSelectedTask(task);
+    console.log(selectedTask);
+  };
 
   return (
     <View style={styles.container}>
@@ -39,7 +44,7 @@ export default function Home() {
           <TaskCard
             task={item}
             deleteTask={deleteTask}
-            updateTask={updateTask}
+            onUpdatePress={onUpdatePress}
           />
         )}
         ListEmptyComponent={<Text>No tasks to display</Text>}

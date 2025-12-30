@@ -15,10 +15,10 @@ type Task = {
 interface Props {
   task: Task;
   deleteTask: (id: number) => void;
-  updateTask: (task: Task) => void;
+  onUpdatePress: (task: Task) => void;
 }
 
-export default function TaskCard({ task, deleteTask, updateTask }: Props) {
+export default function TaskCard({ task, deleteTask, onUpdatePress }: Props) {
   return (
     <View style={styles.container}>
       <BouncyCheckbox onPress={() => {}} />
@@ -26,12 +26,7 @@ export default function TaskCard({ task, deleteTask, updateTask }: Props) {
         {task.title} - {task.priority}
       </Text>
 
-      <AddTaskModalForm
-        buttonTitle="Update"
-        buttonName="Update Task"
-        initialTask={task}
-        onSubmit={updateTask}
-      />
+      <CustomButton title="UPDATE" onPress={() => onUpdatePress(task)} />
 
       <CustomButton title="DELETE" onPress={() => deleteTask(task.taskId)} />
     </View>
