@@ -18,18 +18,36 @@ export default function TaskCard({
 }: HomeProps) {
   return (
     <View style={styles.container}>
-      <BouncyCheckbox
-        onPress={(isChecked: boolean) => {
-          task.status = isChecked;
-        }}
-      />
-      <Text style={styles.item}>
-        {task.title} - {task.priority}
-      </Text>
+      <View style={styles.checkBoxWrapper}>
+        <BouncyCheckbox
+          onPress={(isChecked: boolean) => {
+            task.status = isChecked;
+          }}
+          fillColor="#88D66C"
+          unFillColor="white"
+          iconStyle={styles.checkBoxIcon}
+          innerIconStyle={styles.checkBoxInner}
+        />
+        <View style={styles.textContent}>
+          <Text style={styles.title} numberOfLines={1} ellipsizeMode="tail">
+            {task.title}
+          </Text>
+          <Text
+            style={styles.description}
+            numberOfLines={2}
+            ellipsizeMode="tail"
+          >
+            {task.description}
+          </Text>
+        </View>
+        <Text style={styles.priority}>{task.priority}</Text>
+      </View>
 
-      <CustomButton title="UPDATE" onPress={() => onUpdatePress(task)} />
+      <View style={styles.buttonContainer}>
+        <CustomButton title="DELETE" onPress={() => deleteTask(task.taskId)} />
 
-      <CustomButton title="DELETE" onPress={() => deleteTask(task.taskId)} />
+        <CustomButton title="UPDATE" onPress={() => onUpdatePress(task)} />
+      </View>
     </View>
   );
 }
