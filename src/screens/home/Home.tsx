@@ -3,21 +3,18 @@ import { View, Text, FlatList } from 'react-native';
 import { styles } from './styles.ts';
 import { TaskCard } from '../../components/taskCard';
 import AddTaskModalForm from '../../components/addTaskModalForm';
-
-type Task = {
-  taskId: number;
-  title: string;
-  priority: number;
-  description: string;
-};
+import { Task } from '../../types/type';
 
 export default function Home() {
   const [tasks, setTasks] = useState<Task[]>([]);
-  const id = tasks.length + 1;
+  const [selectedTask, setSelectedTask] = useState<Task | undefined>(undefined);
+  const [isEditMode, setIsEditMode] = useState(false);
 
   const addTask = (task: Task) => {
-    task = { ...task, taskId: id };
-    setTasks([...tasks, task]);
+    setTasks(prev => [
+      ...prev,
+      { ...task, taskId: prev.length + 1, status: false },
+    ]);
   };
 
   const deleteTask = (idToDelete: number) => {
@@ -25,11 +22,22 @@ export default function Home() {
     setTasks(updatedTasks);
   };
 
-  const updateTask = (updatedTask: Task, idToUpdate: number) => {
-    const index = tasks.findIndex(item => item.taskId === idToUpdate);
-    const updatedTasks = [...tasks];
-    updatedTasks.splice(index, 1, updatedTask);
-    setTasks(updatedTasks);
+  const updateTask = (updatedTask: Task) => {
+    setTasks(prev =>
+      prev.map(task =>
+        task.taskId === updatedTask.taskId ? updatedTask : task,
+      ),
+    );
+    setIsEditMode(false);
+    setSelectedTask(undefined);
+  };
+  const onUpdatePress = (task: Task) => {
+    setSelectedTask(task);
+    setIsEditMode(true);
+  };
+  const resetEditMode = () => {
+    setIsEditMode(false);
+    setSelectedTask(undefined);
   };
 
   return (
@@ -37,12 +45,22 @@ export default function Home() {
       <FlatList
         data={tasks}
         renderItem={({ item }) => (
-          <TaskCard {...item} deleteTask={deleteTask} updateTask={updateTask} />
+          <TaskCard
+            task={item}
+            deleteTask={deleteTask}
+            onUpdatePress={onUpdatePress}
+          />
         )}
         ListEmptyComponent={<Text>No tasks to display</Text>}
       />
 
-      <AddTaskModalForm addTask={addTask} />
+      <AddTaskModalForm
+        buttonTitle={'Add New Task'}
+        buttonName={isEditMode ? 'Update Task' : 'Add Task'}
+        initialTask={isEditMode ? selectedTask : undefined}
+        onSubmit={isEditMode ? updateTask : addTask}
+        resetEditStates={resetEditMode}
+      />
     </View>
   );
 }
