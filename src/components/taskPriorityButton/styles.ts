@@ -22,9 +22,9 @@ export const styles = StyleSheet.create({
   },
   radioBg: {
     backgroundColor: '#2C2C2E',
-    height: 23,
-    width: 23,
+    height: 18,
+    width: 18,
     borderRadius: 20,
-    margin: 2.5,
+    margin: 2.6,
   },
 });
