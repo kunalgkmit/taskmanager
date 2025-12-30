@@ -53,7 +53,7 @@ export default function TaskForm({
   };
 
   return (
-    <View>
+    <View style={styles.container}>
       <TextInput
         value={title}
         onChangeText={setTitle}
