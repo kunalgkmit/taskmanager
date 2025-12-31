@@ -4,7 +4,7 @@ import { styles } from './styles.ts';
 import { TaskCard } from '../../components/taskCard';
 import AddTaskModalForm from '../../components/addTaskModalForm';
 import { Task } from '../../types/type';
-import NoTasksToDisplay from '../../components/noTasksToDisplay';
+import EmptyContainer from '../../components/emptyContainer';
 import AppBar from '../../components/appBar';
 
 export default function Home() {
@@ -57,7 +57,7 @@ export default function Home() {
             onUpdatePress={onUpdatePress}
           />
         )}
-        ListEmptyComponent={<NoTasksToDisplay />}
+        ListEmptyComponent={<EmptyContainer />}
       />
 
       <AddTaskModalForm
