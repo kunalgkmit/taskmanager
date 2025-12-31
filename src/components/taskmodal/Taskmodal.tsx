@@ -28,16 +28,26 @@ export default function TaskModal({
   };
   return (
     <Modal transparent={true} visible={showAddTaskFormModal}>
+      <View
+        style={{
+          backgroundColor: 'black',
+          flex: 1,
+          opacity: 0.5,
+          position: 'absolute',
+          top: 0,
+          bottom: 0,
+          left: 0,
+          right: 0,
+        }}
+      ></View>
       <View style={styles.modalView}>
-        <View style={styles.rowContent}>
-          <Text style={styles.modalName}>{modalName}</Text>
-          <TouchableOpacity onPress={closeHandler}>
-            <Image
-              style={styles.close}
-              source={require('../../assets/images/close.png')}
-            />
-          </TouchableOpacity>
-        </View>
+        <TouchableOpacity onPress={closeHandler} style={styles.close}>
+          <Image
+            style={styles.image}
+            source={require('../../assets/images/close.png')}
+          />
+        </TouchableOpacity>
+        <Text style={styles.modalName}>{modalName}</Text>
         {children}
       </View>
     </Modal>

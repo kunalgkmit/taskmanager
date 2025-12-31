@@ -25,7 +25,12 @@ export const styles = StyleSheet.create({
   },
   close: {
     marginLeft: 125,
-    height: 35,
+    position: 'absolute',
+    top: 10,
+    right: 10,
+  },
+  image: {
+    height: 40,
     width: 40,
   },
 });
