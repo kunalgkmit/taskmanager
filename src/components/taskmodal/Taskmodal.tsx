@@ -28,18 +28,7 @@ export default function TaskModal({
   };
   return (
     <Modal transparent={true} visible={showAddTaskFormModal}>
-      <View
-        style={{
-          backgroundColor: 'black',
-          flex: 1,
-          opacity: 0.5,
-          position: 'absolute',
-          top: 0,
-          bottom: 0,
-          left: 0,
-          right: 0,
-        }}
-      ></View>
+      <View style={styles.blurBackground}></View>
       <View style={styles.modalView}>
         <TouchableOpacity onPress={closeHandler} style={styles.close}>
           <Image

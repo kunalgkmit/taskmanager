@@ -34,4 +34,14 @@ export const styles = StyleSheet.create({
     height: 40,
     width: 40,
   },
+  blurBackground: {
+    backgroundColor: 'black',
+    flex: 1,
+    opacity: 0.5,
+    position: 'absolute',
+    top: 0,
+    bottom: 0,
+    left: 0,
+    right: 0,
+  },
 });
