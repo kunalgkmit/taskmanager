@@ -9,11 +9,22 @@ export const styles = StyleSheet.create({
     borderRadius: 20,
     borderWidth: 0.5,
     elevation: 3,
+    marginVertical: 210,
     marginHorizontal: 50,
-    marginVertical: 240,
+    padding: 10,
   },
   modalName: {
-    fontSize: 20,
+    fontSize: 25,
     fontWeight: 'bold',
+    marginBottom: 10,
+  },
+  rowContent: {
+    flexDirection: 'row',
+    marginBottom: 10,
+  },
+  close: {
+    marginLeft: 100,
+    height: 35,
+    width: 40,
   },
 });

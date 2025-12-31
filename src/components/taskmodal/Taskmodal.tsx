@@ -1,7 +1,6 @@
-import { View, Modal, Text } from 'react-native';
+import { View, Modal, Text, Image, TouchableOpacity } from 'react-native';
 import React, { ReactNode } from 'react';
 import { styles } from './styles.ts';
-import { Button as CustomButton } from '../button';
 import { Task } from '../../types/type';
 
 interface AddTaskModalFormProps {
@@ -30,9 +29,16 @@ export default function TaskModal({
   return (
     <Modal transparent={true} visible={showAddTaskFormModal}>
       <View style={styles.modalView}>
-        <Text>{modalName}</Text>
+        <View style={styles.rowContent}>
+          <Text style={styles.modalName}>{modalName}</Text>
+          <TouchableOpacity onPress={closeHandler}>
+            <Image
+              style={styles.close}
+              source={require('../../assets/images/close.png')}
+            />
+          </TouchableOpacity>
+        </View>
         {children}
-        <CustomButton title="Close" onPress={closeHandler} />
       </View>
     </Modal>
   );
