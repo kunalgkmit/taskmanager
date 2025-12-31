@@ -94,8 +94,6 @@ export default function TaskForm({
         <Text style={styles.errorLabel}>Enter Valid Description</Text>
       ) : null}
 
-      {/* {error ? <Text style={styles.errorMessage}>Enter All Fields</Text> : null} */}
-
       <CustomButton title={buttonName} onPress={submitHandler} />
     </View>
   );
