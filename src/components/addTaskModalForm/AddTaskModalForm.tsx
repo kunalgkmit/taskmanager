@@ -7,20 +7,17 @@ import { Task } from '../../types/type';
 import FloatingActionButton from '../floatingActionButton';
 
 interface HomeProps {
-  buttonTitle: string;
-  buttonName: string;
+  isEditMode: boolean;
   initialTask?: Task;
   onSubmit: (task: Task) => void;
   resetEditStates: () => void;
-  modalName: string;
 }
 
 export default function AddTaskFormModal({
-  buttonName,
   initialTask,
   onSubmit,
   resetEditStates,
-  modalName,
+  isEditMode,
 }: HomeProps) {
   const [showModal, setShowModal] = useState(false);
 
@@ -42,14 +39,14 @@ export default function AddTaskFormModal({
   return (
     <View style={styles.container}>
       <TaskModal
-        modalName={modalName}
+        modalName={isEditMode ? 'Update Task' : 'Add Task'}
         resetEditStates={resetEditStates}
         initialTask={initialTask}
         showAddTaskFormModal={showModal}
         setShowAddTaskFormModal={setShowModal}
       >
         <TaskForm
-          buttonName={buttonName}
+          buttonName={isEditMode ? 'Update Task' : 'Add Task'}
           initialTask={initialTask}
           onSubmit={handleSubmit}
           setShowModal={setShowModal}

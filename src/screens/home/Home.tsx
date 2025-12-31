@@ -33,13 +33,19 @@ export default function Home() {
     setIsEditMode(false);
     setSelectedTask(undefined);
   };
+
   const onUpdatePress = (task: Task) => {
     setSelectedTask(task);
     setIsEditMode(true);
   };
+
   const resetEditMode = () => {
     setIsEditMode(false);
     setSelectedTask(undefined);
+  };
+
+  const onSubmit = (newTask: Task) => {
+    isEditMode ? updateTask(newTask) : addTask(newTask);
   };
 
   return (
@@ -61,11 +67,9 @@ export default function Home() {
       />
 
       <AddTaskModalForm
-        buttonTitle={'Add New Task'}
-        buttonName={isEditMode ? 'Update Task' : 'Add Task'}
-        modalName={isEditMode ? 'Update Task' : 'Add Task'}
-        initialTask={isEditMode ? selectedTask : undefined}
-        onSubmit={isEditMode ? updateTask : addTask}
+        isEditMode={isEditMode}
+        initialTask={selectedTask}
+        onSubmit={onSubmit}
         resetEditStates={resetEditMode}
       />
     </View>
