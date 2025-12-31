@@ -4,6 +4,7 @@ import BouncyCheckbox from 'react-native-bouncy-checkbox';
 import { styles } from './styles.ts';
 import { Button as CustomButton } from '../button';
 import { Task } from '../../types/type';
+import COLORS from '../../constants/colors';
 
 interface HomeProps {
   task: Task;
@@ -17,6 +18,7 @@ export default function TaskCard({
   onUpdatePress,
 }: HomeProps) {
   const [taskComplete, setTaskComplete] = useState(false);
+
   const checkBoxHandler = (isChecked: boolean) => {
     task.status = isChecked;
     setTaskComplete(isChecked);
@@ -29,8 +31,8 @@ export default function TaskCard({
           onPress={(isChecked: boolean) => {
             checkBoxHandler(isChecked);
           }}
-          fillColor="#78787bff"
-          unFillColor="white"
+          fillColor={COLORS.checkBoxFillColor}
+          unFillColor={COLORS.secondary}
           iconStyle={styles.checkBoxIcon}
           innerIconStyle={styles.checkBoxInner}
         />

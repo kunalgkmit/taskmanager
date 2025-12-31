@@ -11,7 +11,7 @@ export const styles = StyleSheet.create({
   appTitle: {
     marginBottom: 10,
     fontSize: 18,
-    color: COLORS.appTitle,
+    color: COLORS.secondary,
     fontWeight: 'bold',
   },
 });

@@ -10,7 +10,7 @@ export const styles = StyleSheet.create({
     width: 350,
   },
   title: {
-    color: COLORS.taskTitle,
+    color: COLORS.secondary,
     fontSize: 20,
     fontWeight: 'bold',
   },
@@ -36,7 +36,7 @@ export const styles = StyleSheet.create({
   priority: {
     fontSize: 20,
     fontWeight: 'bold',
-    color: COLORS.taskPriority,
+    color: COLORS.secondary,
     marginLeft: 'auto',
   },
   checkBoxInner: {
