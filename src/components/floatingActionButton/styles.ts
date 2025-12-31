@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import COLORS from '../../constants/colors';
 
 export const styles = StyleSheet.create({
   fab: {
@@ -8,7 +9,7 @@ export const styles = StyleSheet.create({
     width: 50,
     height: 50,
     borderRadius: 15,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: COLORS.secondary,
     justifyContent: 'center',
     alignItems: 'center',
     elevation: 6,

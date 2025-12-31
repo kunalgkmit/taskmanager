@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import COLORS from '../../constants/colors';
 
 export const styles = StyleSheet.create({
   container: {
@@ -9,13 +10,13 @@ export const styles = StyleSheet.create({
     width: 350,
   },
   title: {
-    color: '#FFFFFF',
+    color: COLORS.taskTitle,
     fontSize: 20,
     fontWeight: 'bold',
   },
   description: {
     marginTop: 4,
-    color: '#B0B0B0',
+    color: COLORS.taskDescription,
     fontSize: 13,
     lineHeight: 18,
   },
@@ -35,16 +36,15 @@ export const styles = StyleSheet.create({
   priority: {
     fontSize: 20,
     fontWeight: 'bold',
-    color: 'white',
+    color: COLORS.taskPriority,
     marginLeft: 'auto',
   },
   checkBoxInner: {
     borderRadius: 0,
     borderWidth: 2,
-    borderColor: 'black',
+    borderColor: COLORS.checkboxBorder,
   },
   checkBoxIcon: {
-    borderColor: 'green',
     borderRadius: 0,
   },
 });
