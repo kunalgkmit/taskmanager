@@ -4,7 +4,7 @@ import BouncyCheckbox from 'react-native-bouncy-checkbox';
 import { styles } from './styles.ts';
 import { Button as CustomButton } from '../button';
 import { Task } from '../../types/type';
-import COLORS from '../../constants/colors';
+import { COLORS } from '../../constants/colors/colors';
 
 interface HomeProps {
   task: Task;
