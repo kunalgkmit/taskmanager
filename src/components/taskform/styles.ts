@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import COLORS from '../../constants/colors';
 
 export const styles = StyleSheet.create({
   container: { alignItems: 'center' },
@@ -9,10 +10,6 @@ export const styles = StyleSheet.create({
     borderRadius: 10,
     margin: 25,
     padding: 10,
-  },
-  errorMessage: {
-    color: 'red',
-    marginBottom: 5,
   },
   priorityLabel: {
     top: 7,
@@ -25,13 +22,13 @@ export const styles = StyleSheet.create({
     marginLeft: 25,
   },
   errorLabel: {
-    color: 'red',
+    color: COLORS.error,
     marginRight: 'auto',
     marginLeft: 25,
     bottom: 20,
   },
   errorPriority: {
-    color: 'red',
+    color: COLORS.error,
     marginRight: 'auto',
     marginLeft: 25,
     bottom: 8,

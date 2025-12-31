@@ -1,11 +1,12 @@
 import { StyleSheet } from 'react-native';
+import COLORS from '../../constants/colors';
 
 export const styles = StyleSheet.create({
   modalView: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: 'white',
+    backgroundColor: COLORS.secondary,
     borderRadius: 20,
     borderWidth: 0.5,
     elevation: 3,

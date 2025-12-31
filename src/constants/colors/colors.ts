@@ -7,4 +7,5 @@ export const COLORS = {
   taskDescription: '#B0B0B0',
   checkboxBorder: 'black',
   appTitle: '#FFFFFF',
+  error: 'red',
 };
