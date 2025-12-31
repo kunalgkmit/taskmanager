@@ -13,10 +13,5 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     elevation: 6,
   },
-  plus: {
-    fontSize: 25,
-    fontWeight: 'bold',
-    color: '#000',
-    lineHeight: 36,
-  },
+  image: { height: 30, width: 30 },
 });

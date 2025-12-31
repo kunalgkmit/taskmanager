@@ -1,5 +1,5 @@
 import React from 'react';
-import { TouchableOpacity, Text } from 'react-native';
+import { TouchableOpacity, Image } from 'react-native';
 import { styles } from './styles';
 
 interface FABProps {
@@ -9,7 +9,10 @@ interface FABProps {
 export default function FloatingActionButton({ onPress }: FABProps) {
   return (
     <TouchableOpacity style={styles.fab} onPress={onPress}>
-      <Text style={styles.plus}>+</Text>
+      <Image
+        style={styles.image}
+        source={require('../../assets/images/addIcon.jpg')}
+      />
     </TouchableOpacity>
   );
 }
