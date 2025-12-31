@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, FlatList, Text } from 'react-native';
+import { View, FlatList, StatusBar } from 'react-native';
 import { styles } from './styles.ts';
 import { TaskCard } from '../../components/taskCard';
 import AddTaskModalForm from '../../components/addTaskModalForm';
@@ -43,8 +43,9 @@ export default function Home() {
   };
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container]}>
       <AppBar />
+      <StatusBar barStyle={'light-content'} />
       <FlatList
         scrollEnabled={tasks.length > 0}
         showsVerticalScrollIndicator={false}
