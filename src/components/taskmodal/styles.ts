@@ -9,9 +9,8 @@ export const styles = StyleSheet.create({
     borderRadius: 20,
     borderWidth: 0.5,
     elevation: 3,
-    marginVertical: 210,
-    marginHorizontal: 50,
-    padding: 10,
+    marginVertical: 190,
+    marginHorizontal: 40,
   },
   modalName: {
     fontSize: 25,
@@ -21,9 +20,11 @@ export const styles = StyleSheet.create({
   rowContent: {
     flexDirection: 'row',
     marginBottom: 10,
+    marginLeft: 30,
+    marginRight: 20,
   },
   close: {
-    marginLeft: 100,
+    marginLeft: 125,
     height: 35,
     width: 40,
   },
