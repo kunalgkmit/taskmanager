@@ -3,15 +3,17 @@ import { COLORS } from '../../constants/colors/colors';
 
 export const styles = StyleSheet.create({
   modalView: {
-    flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: COLORS.secondary,
     borderRadius: 20,
     borderWidth: 0.5,
     elevation: 3,
-    marginVertical: 190,
     marginHorizontal: 40,
+    padding: 20,
+    width: '80%',
+    position: 'absolute',
+    top: '25%',
   },
   modalName: {
     fontSize: 25,
