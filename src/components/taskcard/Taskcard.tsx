@@ -27,7 +27,7 @@ export default function TaskCard({
     <View style={styles.container}>
       <View style={styles.rowContent}>
         <BouncyCheckbox
-          style={{ marginBottom: 33 }}
+          style={styles.checkboxStyle}
           onPress={(isChecked: boolean) => {
             checkBoxHandler(isChecked);
           }}

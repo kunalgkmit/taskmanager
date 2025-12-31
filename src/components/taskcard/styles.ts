@@ -47,4 +47,7 @@ export const styles = StyleSheet.create({
   checkBoxIcon: {
     borderRadius: 0,
   },
+  checkboxStyle: {
+    marginBottom: 33,
+  },
 });
