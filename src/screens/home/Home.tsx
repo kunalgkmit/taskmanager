@@ -49,7 +49,7 @@ export default function Home() {
   };
 
   return (
-    <View style={[styles.container]}>
+    <View style={styles.container}>
       <AppBar />
       <StatusBar barStyle={'light-content'} />
       <FlatList
