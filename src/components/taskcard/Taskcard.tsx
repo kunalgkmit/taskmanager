@@ -10,18 +10,17 @@ interface HomeProps {
   task: Task;
   deleteTask: (id: number) => void;
   onUpdatePress: (task: Task) => void;
+  onStatusChange: (taskId: number, status: boolean) => void;
 }
 
 export default function TaskCard({
   task,
   deleteTask,
   onUpdatePress,
+  onStatusChange,
 }: HomeProps) {
-  const [taskComplete, setTaskComplete] = useState(false);
-
   const checkBoxHandler = (isChecked: boolean) => {
-    task.status = isChecked;
-    setTaskComplete(isChecked);
+    onStatusChange(task.taskId, isChecked);
   };
   return (
     <View style={styles.container}>
@@ -35,6 +34,7 @@ export default function TaskCard({
           unFillColor={COLORS.secondary}
           iconStyle={styles.checkBoxIcon}
           innerIconStyle={styles.checkBoxInner}
+          isChecked={task.status}
         />
         <View style={styles.textContent}>
           <Text style={styles.title} numberOfLines={1} ellipsizeMode="tail">
@@ -51,7 +51,7 @@ export default function TaskCard({
         <Text style={styles.priority}>{task.priority}</Text>
       </View>
 
-      {!taskComplete ? (
+      {!task.status ? (
         <View style={styles.buttonContainer}>
           <CustomButton
             title="DELETE"

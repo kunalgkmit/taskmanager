@@ -11,6 +11,7 @@ export default function Home() {
   const [tasks, setTasks] = useState<Task[]>([]);
   const [selectedTask, setSelectedTask] = useState<Task | undefined>(undefined);
   const [isEditMode, setIsEditMode] = useState(false);
+  const [filterMode, setFilterMode] = useState(false);
 
   const addTask = (task: Task) => {
     setTasks(prev => [
@@ -48,19 +49,44 @@ export default function Home() {
     isEditMode ? updateTask(newTask) : addTask(newTask);
   };
 
+  const onStatusChange = (taskId: number, status: boolean) => {
+    setTasks(prev =>
+      prev.map(task => (task.taskId === taskId ? { ...task, status } : task)),
+    );
+  };
+
+  const toggleFilterButton = () => {
+    setFilterMode(!filterMode);
+  };
+
+  const sortedTasks = [...tasks].sort((a, b) => {
+    if (a.status !== b.status) {
+      return b.status ? -1 : 1;
+    } else if (a.status === b.status) {
+      if (a.priority < b.priority) {
+        return 1;
+      }
+      if (a.priority > b.priority) {
+        return -1;
+      }
+    }
+    return 0;
+  });
+
   return (
     <View style={[styles.container]}>
-      <AppBar />
+      <AppBar filterMode={filterMode} filterPress={toggleFilterButton} />
       <StatusBar barStyle={'light-content'} />
       <FlatList
         scrollEnabled={tasks.length > 0}
         showsVerticalScrollIndicator={false}
-        data={tasks}
+        data={filterMode ? sortedTasks : tasks}
         renderItem={({ item }) => (
           <TaskCard
             task={item}
             deleteTask={deleteTask}
             onUpdatePress={onUpdatePress}
+            onStatusChange={onStatusChange}
           />
         )}
         ListEmptyComponent={<EmptyContainer />}

@@ -7,10 +7,17 @@ export const styles = StyleSheet.create({
     width: '100%',
     alignItems: 'center',
     justifyContent: 'center',
+    flexDirection: 'row',
   },
   appTitle: {
     fontSize: 18,
     color: COLORS.secondary,
     fontWeight: 'bold',
+    paddingTop: 10,
+  },
+  buttonStyle: {
+    paddingTop: 15,
+    position: 'absolute',
+    right: 10,
   },
 });

@@ -1,8 +1,15 @@
 import { View, Text } from 'react-native';
 import { styles } from './styles';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import FloatingActionButton from '../floatingActionButton';
+import { Button } from '../button';
 
-export default function AppBar() {
+interface FilterProps {
+  filterMode: boolean;
+  filterPress: () => void;
+}
+
+export default function AppBar({ filterPress, filterMode }: FilterProps) {
   const insets = useSafeAreaInsets();
   const getSafeAreaPadding = () => ({
     paddingTop: insets.top,
@@ -13,6 +20,12 @@ export default function AppBar() {
   return (
     <View style={[styles.appBar, getSafeAreaPadding()]}>
       <Text style={styles.appTitle}>Task Manager</Text>
+      <View style={styles.buttonStyle}>
+        <Button
+          title={`Filter ${filterMode ? 'ON' : 'OFF'}`}
+          onPress={filterPress}
+        />
+      </View>
     </View>
   );
 }
