@@ -7,12 +7,13 @@ import { Task } from '../../types/type';
 import EmptyContainer from '../../components/emptyContainer';
 import AppBar from '../../components/appBar';
 
+type ViewMode = 'none' | 'filter' | 'sort';
+
 export default function Home() {
   const [tasks, setTasks] = useState<Task[]>([]);
   const [selectedTask, setSelectedTask] = useState<Task | undefined>(undefined);
   const [isEditMode, setIsEditMode] = useState(false);
-  const [filterMode, setFilterMode] = useState(false);
-  const [sortMode, setSortMode] = useState(false);
+  const [viewMode, setViewMode] = useState<ViewMode>('none');
 
   const addTask = (task: Task) => {
     setTasks(prev => [
@@ -57,38 +58,44 @@ export default function Home() {
   };
 
   const toggleSortButton = () => {
-    setSortMode(!sortMode);
+    setViewMode(viewMode === 'sort' ? 'none' : 'sort');
   };
 
   const toggleFilterButton = () => {
-    setFilterMode(!filterMode);
+    setViewMode(viewMode === 'filter' ? 'none' : 'filter');
   };
 
-  const filteredTasks = filterMode
-    ? tasks.filter(task => task.priority === 'P1')
-    : tasks;
+  const getDisplayTasks = () => {
+    let result = [...tasks];
 
-  const sortedTasks = [...tasks].sort((a, b) => {
-    if (a.status !== b.status) {
-      return b.status ? -1 : 1;
-    } else if (a.status === b.status) {
-      if (a.priority < b.priority) {
-        return -1;
-      }
-      if (a.priority > b.priority) {
-        return 1;
-      }
+    if (viewMode === 'filter') {
+      result = result.filter(task => task.priority === 'P1');
     }
-    return 0;
-  });
 
-  const displayTasks = sortMode ? sortedTasks : filteredTasks;
+    if (viewMode === 'sort') {
+      result = result.sort((a, b) => {
+        if (a.status !== b.status) {
+          return b.status ? -1 : 1;
+        }
+        if (a.priority < b.priority) {
+          return -1;
+        }
+        if (a.priority > b.priority) {
+          return 1;
+        }
+        return 0;
+      });
+    }
+
+    return result;
+  };
+
+  const displayTasks = getDisplayTasks();
 
   return (
     <View style={styles.container}>
       <AppBar
-        filterMode={filterMode}
-        sortMode={sortMode}
+        viewMode={viewMode}
         filterPress={toggleFilterButton}
         sortPress={toggleSortButton}
       />
