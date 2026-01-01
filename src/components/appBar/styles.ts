@@ -34,12 +34,12 @@ export const styles = StyleSheet.create({
     height: 30,
     width: 30,
     backgroundColor: 'yellow',
-    borderRadius: 10,
+    borderRadius: 8,
   },
   unSelectIcon: {
     height: 30,
     width: 30,
     backgroundColor: 'white',
-    borderRadius: 10,
+    borderRadius: 8,
   },
 });
