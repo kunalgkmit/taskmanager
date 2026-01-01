@@ -22,6 +22,10 @@ export default function AppBar({
     paddingLeft: insets.left,
     paddingRight: insets.right,
   });
+
+  const sortImage = require('../../assets/images/sort.webp');
+  const filterImage = require('../../assets/images/filter.png');
+
   return (
     <View style={[styles.appBar, getSafeAreaPadding()]}>
       <Text style={styles.appTitle}>Task Manager</Text>
@@ -31,7 +35,7 @@ export default function AppBar({
             style={
               viewMode === 'sort' ? styles.selectIcon : styles.unSelectIcon
             }
-            source={require('../../assets/images/sort.webp')}
+            source={sortImage}
           />
         </TouchableOpacity>
         <TouchableOpacity onPress={filterPress} style={styles.filterButton}>
@@ -39,7 +43,7 @@ export default function AppBar({
             style={
               viewMode === 'filter' ? styles.selectIcon : styles.unSelectIcon
             }
-            source={require('../../assets/images/filter.png')}
+            source={filterImage}
           />
         </TouchableOpacity>
       </View>
