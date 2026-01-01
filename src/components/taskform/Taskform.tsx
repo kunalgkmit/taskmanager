@@ -21,7 +21,11 @@ export default function TaskForm({
   const [title, setTitle] = useState('');
   const [priority, setPriority] = useState('');
   const [description, setDescription] = useState('');
-  const [error, setError] = useState(false);
+  const [errors, setErrors] = useState({
+    title: false,
+    priority: false,
+    description: false,
+  });
 
   useEffect(() => {
     if (initialTask) {
@@ -38,7 +42,11 @@ export default function TaskForm({
 
     const validateError =
       validateTitle || validatePriority || validateDescription;
-    setError(validateError);
+    setErrors({
+      title: validateTitle,
+      priority: validatePriority,
+      description: validateDescription,
+    });
 
     if (!validateError) {
       onSubmit({
@@ -53,26 +61,38 @@ export default function TaskForm({
   };
 
   return (
-    <View>
+    <View style={styles.container}>
+      <Text style={styles.inputLabel}>Title</Text>
       <TextInput
         value={title}
         onChangeText={setTitle}
         placeholder="Enter task title"
         style={styles.userInput}
       />
+      {errors.title ? (
+        <Text style={styles.errorLabel}>Enter Valid Title</Text>
+      ) : null}
 
-      <Text>Priority</Text>
+      <Text style={styles.priorityLabel}>Priority</Text>
       <TaskPriorityButton
         priorityToUpdate={initialTask ? initialTask.priority : ''}
         setTaskPriority={setPriority}
       />
+      {errors.priority ? (
+        <Text style={styles.errorPriority}>Select Priority</Text>
+      ) : null}
 
+      <Text style={styles.inputLabel}>Description</Text>
       <TextInput
+        aria-label=""
         value={description}
         onChangeText={setDescription}
         placeholder="Enter task description"
         style={styles.userInput}
       />
+      {errors.description ? (
+        <Text style={styles.errorLabel}>Enter Valid Description</Text>
+      ) : null}
 
       <CustomButton title={buttonName} onPress={submitHandler} />
     </View>

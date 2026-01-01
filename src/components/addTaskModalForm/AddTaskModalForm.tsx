@@ -1,24 +1,23 @@
 import { View } from 'react-native';
 import React, { useEffect, useState } from 'react';
+import { styles } from './styles';
 import { TaskModal } from '../taskModal';
-import { Button as CustomButton } from '../button';
 import { TaskForm } from '../taskForm';
 import { Task } from '../../types/type';
+import FloatingActionButton from '../floatingActionButton';
 
 interface HomeProps {
-  buttonTitle: string;
-  buttonName: string;
+  isEditMode: boolean;
   initialTask?: Task;
   onSubmit: (task: Task) => void;
   resetEditStates: () => void;
 }
 
 export default function AddTaskFormModal({
-  buttonTitle,
-  buttonName,
   initialTask,
   onSubmit,
   resetEditStates,
+  isEditMode,
 }: HomeProps) {
   const [showModal, setShowModal] = useState(false);
 
@@ -38,22 +37,23 @@ export default function AddTaskFormModal({
   };
 
   return (
-    <View>
+    <View style={styles.container}>
       <TaskModal
+        modalName={isEditMode ? 'Update Task' : 'Add Task'}
         resetEditStates={resetEditStates}
         initialTask={initialTask}
         showAddTaskFormModal={showModal}
         setShowAddTaskFormModal={setShowModal}
       >
         <TaskForm
-          buttonName={buttonName}
+          buttonName={isEditMode ? 'Update Task' : 'Add Task'}
           initialTask={initialTask}
           onSubmit={handleSubmit}
           setShowModal={setShowModal}
         />
       </TaskModal>
 
-      <CustomButton title={buttonTitle} onPress={buttonHandler} />
+      <FloatingActionButton onPress={buttonHandler} />
     </View>
   );
 }

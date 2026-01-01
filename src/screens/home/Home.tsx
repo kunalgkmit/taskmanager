@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
-import { View, Text, FlatList } from 'react-native';
+import { View, FlatList, StatusBar } from 'react-native';
 import { styles } from './styles.ts';
 import { TaskCard } from '../../components/taskCard';
 import AddTaskModalForm from '../../components/addTaskModalForm';
 import { Task } from '../../types/type';
+import EmptyContainer from '../../components/emptyContainer';
+import AppBar from '../../components/appBar';
 
 export default function Home() {
   const [tasks, setTasks] = useState<Task[]>([]);
@@ -31,18 +33,28 @@ export default function Home() {
     setIsEditMode(false);
     setSelectedTask(undefined);
   };
+
   const onUpdatePress = (task: Task) => {
     setSelectedTask(task);
     setIsEditMode(true);
   };
+
   const resetEditMode = () => {
     setIsEditMode(false);
     setSelectedTask(undefined);
   };
 
+  const onSubmit = (newTask: Task) => {
+    isEditMode ? updateTask(newTask) : addTask(newTask);
+  };
+
   return (
     <View style={styles.container}>
+      <AppBar />
+      <StatusBar barStyle={'light-content'} />
       <FlatList
+        scrollEnabled={tasks.length > 0}
+        showsVerticalScrollIndicator={false}
         data={tasks}
         renderItem={({ item }) => (
           <TaskCard
@@ -51,14 +63,13 @@ export default function Home() {
             onUpdatePress={onUpdatePress}
           />
         )}
-        ListEmptyComponent={<Text>No tasks to display</Text>}
+        ListEmptyComponent={<EmptyContainer />}
       />
 
       <AddTaskModalForm
-        buttonTitle={'Add New Task'}
-        buttonName={isEditMode ? 'Update Task' : 'Add Task'}
-        initialTask={isEditMode ? selectedTask : undefined}
-        onSubmit={isEditMode ? updateTask : addTask}
+        isEditMode={isEditMode}
+        initialTask={selectedTask}
+        onSubmit={onSubmit}
         resetEditStates={resetEditMode}
       />
     </View>

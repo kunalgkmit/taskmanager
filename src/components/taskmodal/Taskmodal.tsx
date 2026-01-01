@@ -1,7 +1,6 @@
-import { View, Modal } from 'react-native';
+import { View, Modal, Text, Image, TouchableOpacity } from 'react-native';
 import React, { ReactNode } from 'react';
 import { styles } from './styles.ts';
-import { Button as CustomButton } from '../button';
 import { Task } from '../../types/type';
 
 interface AddTaskModalFormProps {
@@ -10,6 +9,7 @@ interface AddTaskModalFormProps {
   initialTask?: Task;
   setShowAddTaskFormModal: (visible: boolean) => void;
   children: ReactNode;
+  modalName: string;
 }
 
 export default function TaskModal({
@@ -18,6 +18,7 @@ export default function TaskModal({
   children,
   resetEditStates,
   initialTask,
+  modalName,
 }: AddTaskModalFormProps) {
   const closeHandler = () => {
     setShowAddTaskFormModal(false);
@@ -27,9 +28,16 @@ export default function TaskModal({
   };
   return (
     <Modal transparent={true} visible={showAddTaskFormModal}>
+      <View style={styles.blurBackground}></View>
       <View style={styles.modalView}>
+        <TouchableOpacity onPress={closeHandler} style={styles.close}>
+          <Image
+            style={styles.image}
+            source={require('../../assets/images/close.png')}
+          />
+        </TouchableOpacity>
+        <Text style={styles.modalName}>{modalName}</Text>
         {children}
-        <CustomButton title="Close" onPress={closeHandler} />
       </View>
     </Modal>
   );
