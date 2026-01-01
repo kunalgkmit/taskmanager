@@ -74,7 +74,7 @@ export default function Home() {
   });
 
   return (
-    <View style={[styles.container]}>
+    <View style={styles.container}>
       <AppBar filterMode={filterMode} filterPress={toggleFilterButton} />
       <StatusBar barStyle={'light-content'} />
       <FlatList

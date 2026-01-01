@@ -37,7 +37,7 @@ export const styles = StyleSheet.create({
     width: 40,
   },
   blurBackground: {
-    backgroundColor: 'black',
+    backgroundColor: COLORS.primary,
     flex: 1,
     opacity: 0.5,
     position: 'absolute',

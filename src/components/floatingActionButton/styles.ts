@@ -5,7 +5,7 @@ export const styles = StyleSheet.create({
   fab: {
     position: 'absolute',
     bottom: 24,
-    right: 24,
+    left: 115,
     width: 50,
     height: 50,
     borderRadius: 15,
