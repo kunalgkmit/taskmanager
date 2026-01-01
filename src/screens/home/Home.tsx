@@ -64,10 +64,10 @@ export default function Home() {
       return b.status ? -1 : 1;
     } else if (a.status === b.status) {
       if (a.priority < b.priority) {
-        return 1;
+        return -1;
       }
       if (a.priority > b.priority) {
-        return -1;
+        return 1;
       }
     }
     return 0;

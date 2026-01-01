@@ -15,9 +15,31 @@ export const styles = StyleSheet.create({
     fontWeight: 'bold',
     paddingTop: 10,
   },
-  buttonStyle: {
+  buttonWrapper: {
+    paddingTop: 45,
+    position: 'absolute',
+    right: 10,
+  },
+  sortButton: {
+    paddingTop: 15,
+    position: 'absolute',
+    right: 60,
+  },
+  filterButton: {
     paddingTop: 15,
     position: 'absolute',
     right: 10,
+  },
+  selectIcon: {
+    height: 30,
+    width: 30,
+    backgroundColor: 'yellow',
+    borderRadius: 10,
+  },
+  unSelectIcon: {
+    height: 30,
+    width: 30,
+    backgroundColor: 'white',
+    borderRadius: 10,
   },
 });
