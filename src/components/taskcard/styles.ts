@@ -7,7 +7,7 @@ export const styles = StyleSheet.create({
     borderRadius: 14,
     padding: 15,
     marginVertical: 10,
-    width: 350,
+    width: 360,
   },
   title: {
     color: COLORS.secondary,

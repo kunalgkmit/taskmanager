@@ -52,7 +52,11 @@ export default function TaskPriorityButton({
   return (
     <View style={styles.container}>
       {priorityScale.map((item, index) => (
-        <TouchableOpacity key={index} onPress={() => buttonHandler(item)}>
+        <TouchableOpacity
+          key={index}
+          onPress={() => buttonHandler(item)}
+          style={styles.button}
+        >
           <View style={styles.radioWrapper}>
             <View style={styles.radio}>
               {selectedPriority === item.id ? (

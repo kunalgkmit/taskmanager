@@ -4,8 +4,8 @@ import { COLORS } from '../../constants/colors/colors';
 export const styles = StyleSheet.create({
   fab: {
     position: 'absolute',
-    bottom: 24,
-    left: 115,
+    bottom: 5,
+    left: 130,
     width: 50,
     height: 50,
     borderRadius: 15,
@@ -13,7 +13,7 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     elevation: 6,
-    shadowOpacity: 0.25,
+    shadowOpacity: 0.5,
     shadowRadius: 3.84,
   },
   image: { height: 30, width: 30 },
