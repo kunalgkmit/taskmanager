@@ -1,7 +1,7 @@
 import { View, Text, Image, TouchableOpacity } from 'react-native';
 import { styles } from './styles';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { VIEW_MODES } from '../../constants/viewModes/viewModes';
+import { VIEW_MODES } from '../../constants/constants';
 
 interface AppBarProps {
   viewMode: ViewMode;

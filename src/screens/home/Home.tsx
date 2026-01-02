@@ -5,7 +5,7 @@ import { TaskCard } from '../../components/taskCard';
 import AddTaskModalForm from '../../components/addTaskModalForm';
 import EmptyContainer from '../../components/emptyContainer';
 import AppBar from '../../components/appBar';
-import { VIEW_MODES } from '../../constants/viewModes/viewModes.ts';
+import { VIEW_MODES } from '../../constants/constants.ts';
 
 export default function Home() {
   const [tasks, setTasks] = useState<Task[]>([]);
