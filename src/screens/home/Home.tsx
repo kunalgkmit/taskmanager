@@ -1,19 +1,17 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { View, FlatList, StatusBar } from 'react-native';
 import { styles } from './styles.ts';
 import { TaskCard } from '../../components/taskCard';
 import AddTaskModalForm from '../../components/addTaskModalForm';
-import { Task } from '../../types/type';
 import EmptyContainer from '../../components/emptyContainer';
 import AppBar from '../../components/appBar';
-
-type ViewMode = 'none' | 'filter' | 'sort';
+import { VIEW_MODES } from '../../constants/viewModes/viewModes.ts';
 
 export default function Home() {
   const [tasks, setTasks] = useState<Task[]>([]);
   const [selectedTask, setSelectedTask] = useState<Task | undefined>(undefined);
   const [isEditMode, setIsEditMode] = useState(false);
-  const [viewMode, setViewMode] = useState<ViewMode>('none');
+  const [viewMode, setViewMode] = useState<ViewMode>(VIEW_MODES.NONE);
 
   const addTask = (task: Task) => {
     setTasks(prev => [
@@ -58,21 +56,21 @@ export default function Home() {
   };
 
   const toggleSortButton = () => {
-    setViewMode(viewMode === 'sort' ? 'none' : 'sort');
+    setViewMode(viewMode === VIEW_MODES.SORT ? 'none' : VIEW_MODES.SORT);
   };
 
   const toggleFilterButton = () => {
-    setViewMode(viewMode === 'filter' ? 'none' : 'filter');
+    setViewMode(viewMode === VIEW_MODES.FILTER ? 'none' : VIEW_MODES.FILTER);
   };
 
   const getDisplayTasks = () => {
     let result = [...tasks];
 
-    if (viewMode === 'filter') {
+    if (viewMode === VIEW_MODES.FILTER) {
       result = result.filter(task => task.priority === 'P1');
     }
 
-    if (viewMode === 'sort') {
+    if (viewMode === VIEW_MODES.SORT) {
       result = result.sort((a, b) => {
         if (a.status !== b.status) {
           return b.status ? -1 : 1;
@@ -101,7 +99,6 @@ export default function Home() {
       />
       <StatusBar barStyle={'light-content'} />
       <FlatList
-        scrollEnabled={tasks.length > 0}
         showsVerticalScrollIndicator={false}
         data={displayTasks}
         renderItem={({ item }) => (
