@@ -1,10 +1,9 @@
 import { View, Text, Image, TouchableOpacity } from 'react-native';
 import { styles } from './styles';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { VIEW_MODES } from '../../constants/viewModes/viewModes';
 
-type ViewMode = 'none' | 'filter' | 'sort';
-
-interface FilterProps {
+interface AppBarProps {
   viewMode: ViewMode;
   filterPress: () => void;
   sortPress: () => void;
@@ -14,7 +13,7 @@ export default function AppBar({
   filterPress,
   sortPress,
   viewMode,
-}: FilterProps) {
+}: AppBarProps) {
   const insets = useSafeAreaInsets();
   const getSafeAreaPadding = () => ({
     paddingTop: insets.top,
@@ -33,7 +32,9 @@ export default function AppBar({
         <TouchableOpacity onPress={sortPress} style={styles.sortButton}>
           <Image
             style={
-              viewMode === 'sort' ? styles.selectIcon : styles.unSelectIcon
+              viewMode === VIEW_MODES.SORT
+                ? styles.selectIcon
+                : styles.unSelectIcon
             }
             source={sortImage}
           />
@@ -41,7 +42,9 @@ export default function AppBar({
         <TouchableOpacity onPress={filterPress} style={styles.filterButton}>
           <Image
             style={
-              viewMode === 'filter' ? styles.selectIcon : styles.unSelectIcon
+              viewMode === VIEW_MODES.FILTER
+                ? styles.selectIcon
+                : styles.unSelectIcon
             }
             source={filterImage}
           />
