@@ -1,7 +1,9 @@
-export interface Task {
+interface Task {
   taskId: number;
   title: string;
   priority: string;
   description: string;
-  status: boolean = false;
+  status: boolean;
 }
+
+type ViewMode = 'none' | 'filter' | 'sort';

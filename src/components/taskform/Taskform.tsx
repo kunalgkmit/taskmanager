@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react';
 import { styles } from './styles.ts';
 import { Button as CustomButton } from '../button';
 import { TaskPriorityButton } from '../taskPriorityButton';
-import { Task } from '../../types/type';
 
 interface TaskProps {
   buttonName: string;

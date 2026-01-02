@@ -6,13 +6,12 @@ interface FABProps {
   onPress: () => void;
 }
 
+const addTaskImage = require('../../assets/images/addIcon.jpg');
+
 export default function FloatingActionButton({ onPress }: FABProps) {
   return (
     <TouchableOpacity style={styles.fab} onPress={onPress}>
-      <Image
-        style={styles.image}
-        source={require('../../assets/images/addIcon.jpg')}
-      />
+      <Image style={styles.image} source={addTaskImage} />
     </TouchableOpacity>
   );
 }

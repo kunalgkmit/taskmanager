@@ -42,7 +42,6 @@ export const styles = StyleSheet.create({
   checkBoxInner: {
     borderRadius: 0,
     borderWidth: 2,
-    borderColor: COLORS.checkboxBorder,
   },
   checkBoxIcon: {
     borderRadius: 0,

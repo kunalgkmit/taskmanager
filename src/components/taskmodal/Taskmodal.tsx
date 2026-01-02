@@ -1,7 +1,6 @@
 import { View, Modal, Text, Image, TouchableOpacity } from 'react-native';
 import React, { ReactNode } from 'react';
 import { styles } from './styles.ts';
-import { Task } from '../../types/type';
 
 interface AddTaskModalFormProps {
   resetEditStates: () => void;

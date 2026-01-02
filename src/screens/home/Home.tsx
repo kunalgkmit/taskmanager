@@ -1,16 +1,17 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { View, FlatList, StatusBar } from 'react-native';
 import { styles } from './styles.ts';
 import { TaskCard } from '../../components/taskCard';
 import AddTaskModalForm from '../../components/addTaskModalForm';
-import { Task } from '../../types/type';
 import EmptyContainer from '../../components/emptyContainer';
 import AppBar from '../../components/appBar';
+import { VIEW_MODES, PRIORITY } from '../../constants/constants.ts';
 
 export default function Home() {
   const [tasks, setTasks] = useState<Task[]>([]);
   const [selectedTask, setSelectedTask] = useState<Task | undefined>(undefined);
   const [isEditMode, setIsEditMode] = useState(false);
+  const [viewMode, setViewMode] = useState<ViewMode>(VIEW_MODES.NONE);
 
   const addTask = (task: Task) => {
     setTasks(prev => [
@@ -48,19 +49,68 @@ export default function Home() {
     isEditMode ? updateTask(newTask) : addTask(newTask);
   };
 
+  const onStatusChange = (taskId: number, status: boolean) => {
+    setTasks(prev =>
+      prev.map(task => (task.taskId === taskId ? { ...task, status } : task)),
+    );
+  };
+
+  const toggleSortButton = () => {
+    setViewMode(
+      viewMode === VIEW_MODES.SORT ? VIEW_MODES.NONE : VIEW_MODES.SORT,
+    );
+  };
+
+  const toggleFilterButton = () => {
+    setViewMode(
+      viewMode === VIEW_MODES.FILTER ? VIEW_MODES.NONE : VIEW_MODES.FILTER,
+    );
+  };
+
+  const getDisplayTasks = () => {
+    let modifyTasks = [...tasks];
+
+    if (viewMode === VIEW_MODES.FILTER) {
+      modifyTasks = modifyTasks.filter(task => task.priority === PRIORITY.HIGH);
+    }
+
+    if (viewMode === VIEW_MODES.SORT) {
+      modifyTasks = modifyTasks.sort((a, b) => {
+        if (a.status !== b.status) {
+          return b.status ? -1 : 1;
+        }
+        if (a.priority < b.priority) {
+          return -1;
+        }
+        if (a.priority > b.priority) {
+          return 1;
+        }
+        return 0;
+      });
+    }
+
+    return modifyTasks;
+  };
+
+  const displayTasks = getDisplayTasks();
+
   return (
     <View style={styles.container}>
-      <AppBar />
       <StatusBar barStyle={'light-content'} />
+      <AppBar
+        viewMode={viewMode}
+        filterPress={toggleFilterButton}
+        sortPress={toggleSortButton}
+      />
       <FlatList
-        scrollEnabled={tasks.length > 0}
         showsVerticalScrollIndicator={false}
-        data={tasks}
+        data={displayTasks}
         renderItem={({ item }) => (
           <TaskCard
             task={item}
             deleteTask={deleteTask}
             onUpdatePress={onUpdatePress}
+            onStatusChange={onStatusChange}
           />
         )}
         ListEmptyComponent={<EmptyContainer />}
