@@ -5,7 +5,7 @@ import { TaskCard } from '../../components/taskCard';
 import AddTaskModalForm from '../../components/addTaskModalForm';
 import EmptyContainer from '../../components/emptyContainer';
 import AppBar from '../../components/appBar';
-import { VIEW_MODES } from '../../constants/constants.ts';
+import { VIEW_MODES, PRIORITY } from '../../constants/constants.ts';
 
 export default function Home() {
   const [tasks, setTasks] = useState<Task[]>([]);
@@ -71,9 +71,7 @@ export default function Home() {
     let modifyTasks = [...tasks];
 
     if (viewMode === VIEW_MODES.FILTER) {
-      modifyTasks = modifyTasks.filter(
-        task => task.priority === VIEW_MODES.HIGHEST_PRIORITY,
-      );
+      modifyTasks = modifyTasks.filter(task => task.priority === PRIORITY.HIGH);
     }
 
     if (viewMode === VIEW_MODES.SORT) {

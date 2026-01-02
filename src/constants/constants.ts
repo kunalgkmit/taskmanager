@@ -2,5 +2,10 @@ export enum VIEW_MODES {
   NONE = 'none',
   FILTER = 'filter',
   SORT = 'sort',
-  HIGHEST_PRIORITY = 'P1',
+}
+
+export enum PRIORITY {
+  HIGH = 'P1',
+  MEDIUM = 'P2',
+  LOW = 'P3',
 }
