@@ -5,7 +5,7 @@ import { styles } from './styles.ts';
 import { Button as CustomButton } from '../button';
 import { COLORS } from '../../constants/colors/colors';
 
-interface HomeProps {
+interface TaskCardProps {
   task: Task;
   deleteTask: (id: number) => void;
   onUpdatePress: (task: Task) => void;
@@ -17,7 +17,7 @@ export default function TaskCard({
   deleteTask,
   onUpdatePress,
   onStatusChange,
-}: HomeProps) {
+}: TaskCardProps) {
   const checkBoxHandler = (isChecked: boolean) => {
     onStatusChange(task.taskId, isChecked);
   };
