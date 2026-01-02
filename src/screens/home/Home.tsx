@@ -56,22 +56,28 @@ export default function Home() {
   };
 
   const toggleSortButton = () => {
-    setViewMode(viewMode === VIEW_MODES.SORT ? 'none' : VIEW_MODES.SORT);
+    setViewMode(
+      viewMode === VIEW_MODES.SORT ? VIEW_MODES.NONE : VIEW_MODES.SORT,
+    );
   };
 
   const toggleFilterButton = () => {
-    setViewMode(viewMode === VIEW_MODES.FILTER ? 'none' : VIEW_MODES.FILTER);
+    setViewMode(
+      viewMode === VIEW_MODES.FILTER ? VIEW_MODES.NONE : VIEW_MODES.FILTER,
+    );
   };
 
   const getDisplayTasks = () => {
-    let result = [...tasks];
+    let modifyTasks = [...tasks];
 
     if (viewMode === VIEW_MODES.FILTER) {
-      result = result.filter(task => task.priority === 'P1');
+      modifyTasks = modifyTasks.filter(
+        task => task.priority === VIEW_MODES.HIGHEST_PRIORITY,
+      );
     }
 
     if (viewMode === VIEW_MODES.SORT) {
-      result = result.sort((a, b) => {
+      modifyTasks = modifyTasks.sort((a, b) => {
         if (a.status !== b.status) {
           return b.status ? -1 : 1;
         }
@@ -85,7 +91,7 @@ export default function Home() {
       });
     }
 
-    return result;
+    return modifyTasks;
   };
 
   const displayTasks = getDisplayTasks();
