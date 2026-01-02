@@ -3,7 +3,6 @@ import { View, Text } from 'react-native';
 import BouncyCheckbox from 'react-native-bouncy-checkbox';
 import { styles } from './styles.ts';
 import { Button as CustomButton } from '../button';
-import { Task } from '../../types/type';
 import { COLORS } from '../../constants/colors/colors';
 
 interface HomeProps {

@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react';
 import { styles } from './styles';
 import { TaskModal } from '../taskModal';
 import { TaskForm } from '../taskForm';
-import { Task } from '../../types/type';
 import FloatingActionButton from '../floatingActionButton';
 
 interface HomeProps {
