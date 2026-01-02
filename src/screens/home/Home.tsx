@@ -98,12 +98,12 @@ export default function Home() {
 
   return (
     <View style={styles.container}>
+      <StatusBar barStyle={'light-content'} />
       <AppBar
         viewMode={viewMode}
         filterPress={toggleFilterButton}
         sortPress={toggleSortButton}
       />
-      <StatusBar barStyle={'light-content'} />
       <FlatList
         showsVerticalScrollIndicator={false}
         data={displayTasks}
