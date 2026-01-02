@@ -12,12 +12,14 @@ export default function Home() {
   const [selectedTask, setSelectedTask] = useState<Task | undefined>(undefined);
   const [isEditMode, setIsEditMode] = useState(false);
   const [viewMode, setViewMode] = useState<ViewMode>(VIEW_MODES.NONE);
+  const taskIdRef = useRef(1);
 
   const addTask = (task: Task) => {
     setTasks(prev => [
       ...prev,
-      { ...task, taskId: prev.length + 1, status: false },
+      { ...task, taskId: taskIdRef.current, status: false },
     ]);
+    taskIdRef.current += 1;
   };
 
   const deleteTask = (idToDelete: number) => {
