@@ -12,7 +12,6 @@ export const styles = StyleSheet.create({
     padding: 10,
   },
   priorityLabel: {
-    top: 3,
     marginRight: 'auto',
     marginLeft: 25,
   },
