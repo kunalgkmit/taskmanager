@@ -5,6 +5,5 @@ export const COLORS = {
   checkboxBorder: 'black',
   error: 'red',
   checkBoxFillColor: '#78787bff',
-  selectIcon: 'yellow',
-  unselectIcon: 'white',
+  selectIcon: '#FFEF5F',
 };

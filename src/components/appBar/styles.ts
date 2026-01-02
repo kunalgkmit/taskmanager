@@ -36,7 +36,7 @@ export const styles = StyleSheet.create({
   unSelectIcon: {
     height: 30,
     width: 30,
-    backgroundColor: COLORS.unselectIcon,
+    backgroundColor: COLORS.secondary,
     borderRadius: 5,
   },
 });
