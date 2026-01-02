@@ -3,7 +3,6 @@ import { COLORS } from '../../constants/colors/colors';
 
 export const styles = StyleSheet.create({
   container: {
-    justifyContent: 'center',
     flexDirection: 'row',
   },
   buttonText: {
@@ -27,5 +26,9 @@ export const styles = StyleSheet.create({
     width: 18,
     borderRadius: 20,
     margin: 2.6,
+  },
+  button: {
+    flex: 1,
+    justifyContent: 'space-between',
   },
 });
