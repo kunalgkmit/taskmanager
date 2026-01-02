@@ -1,13 +1,9 @@
-declare global {
-  interface Task {
-    taskId: number;
-    title: string;
-    priority: string;
-    description: string;
-    status: boolean = false;
-  }
-
-  type ViewMode = 'none' | 'filter' | 'sort';
+interface Task {
+  taskId: number;
+  title: string;
+  priority: string;
+  description: string;
+  status: boolean;
 }
 
-export {};
+type ViewMode = 'none' | 'filter' | 'sort';
