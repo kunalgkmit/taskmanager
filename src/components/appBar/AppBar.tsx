@@ -9,6 +9,9 @@ interface AppBarProps {
   sortPress: () => void;
 }
 
+const sortImage = require('../../assets/images/sort.webp');
+const filterImage = require('../../assets/images/filter.png');
+
 export default function AppBar({
   filterPress,
   sortPress,
@@ -21,9 +24,6 @@ export default function AppBar({
     paddingLeft: insets.left,
     paddingRight: insets.right,
   });
-
-  const sortImage = require('../../assets/images/sort.webp');
-  const filterImage = require('../../assets/images/filter.png');
 
   return (
     <View style={[styles.appBar, getSafeAreaPadding()]}>
