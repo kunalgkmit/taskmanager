@@ -6,37 +6,35 @@ export const styles = StyleSheet.create({
     backgroundColor: COLORS.primary,
     width: '100%',
     alignItems: 'center',
-    justifyContent: 'flex-end',
+    justifyContent: 'space-around',
     flexDirection: 'row',
   },
+  titleWrapper: {
+    marginTop: 10,
+  },
   appTitle: {
-    fontSize: 18,
+    fontSize: 30,
     color: COLORS.secondary,
     fontWeight: 'bold',
-    paddingTop: 15,
   },
   buttonWrapper: {
     flexDirection: 'row',
-    paddingRight: 20,
-    paddingLeft: 30,
-    top: 10,
-  },
-  sortButton: {
-    padding: 10,
+    width: '40%',
+    justifyContent: 'flex-end',
+    marginTop: 10,
   },
   filterButton: {
-    padding: 10,
+    paddingLeft: 15,
   },
   selectIcon: {
-    height: 30,
-    width: 30,
     backgroundColor: COLORS.selectIcon,
-    borderRadius: 5,
   },
   unSelectIcon: {
+    backgroundColor: COLORS.secondary,
+  },
+  icon: {
     height: 30,
     width: 30,
-    backgroundColor: COLORS.secondary,
     borderRadius: 5,
   },
 });

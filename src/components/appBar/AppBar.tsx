@@ -27,14 +27,16 @@ export default function AppBar({
 
   return (
     <View style={[styles.appBar, getSafeAreaPadding()]}>
-      <Text style={styles.appTitle}>Task Manager</Text>
+      <View style={styles.titleWrapper}>
+        <Text style={styles.appTitle}>Task Manager</Text>
+      </View>
       <View style={styles.buttonWrapper}>
-        <TouchableOpacity onPress={sortPress} style={styles.sortButton}>
+        <TouchableOpacity onPress={sortPress}>
           <Image
             style={
               viewMode === VIEW_MODES.SORT
-                ? styles.selectIcon
-                : styles.unSelectIcon
+                ? [styles.selectIcon, styles.icon]
+                : [styles.unSelectIcon, styles.icon]
             }
             source={sortImage}
           />
@@ -43,8 +45,8 @@ export default function AppBar({
           <Image
             style={
               viewMode === VIEW_MODES.FILTER
-                ? styles.selectIcon
-                : styles.unSelectIcon
+                ? [styles.selectIcon, styles.icon]
+                : [styles.unSelectIcon, styles.icon]
             }
             source={filterImage}
           />
