@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useMemo, useRef, useState } from 'react';
 import { View, FlatList, StatusBar } from 'react-native';
 import { styles } from './styles.ts';
 import { TaskCard } from '../../components/taskCard';
@@ -94,7 +94,7 @@ export default function Home() {
     return modifyTasks;
   };
 
-  const displayTasks = getDisplayTasks();
+  const displayTasks = useMemo(() => getDisplayTasks(), [tasks, viewMode]);
 
   return (
     <View style={styles.container}>
@@ -107,6 +107,7 @@ export default function Home() {
       <FlatList
         showsVerticalScrollIndicator={false}
         data={displayTasks}
+        keyExtractor={item => item.taskId.toString()}
         renderItem={({ item }) => (
           <TaskCard
             task={item}
