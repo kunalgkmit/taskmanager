@@ -93,7 +93,11 @@ export default function TaskForm({
         <Text style={styles.errorLabel}>Enter Valid Description</Text>
       ) : null}
 
-      <CustomButton title={buttonName} onPress={submitHandler} />
+      <CustomButton
+        title={buttonName}
+        onPress={submitHandler}
+        modifyTask={true}
+      />
     </View>
   );
 }

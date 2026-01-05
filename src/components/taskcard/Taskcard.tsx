@@ -55,9 +55,14 @@ export default function TaskCard({
           <CustomButton
             title="DELETE"
             onPress={() => deleteTask(task.taskId)}
+            modifyTask={false}
           />
 
-          <CustomButton title="UPDATE" onPress={() => onUpdatePress(task)} />
+          <CustomButton
+            title="UPDATE"
+            onPress={() => onUpdatePress(task)}
+            modifyTask={true}
+          />
         </View>
       ) : null}
     </View>
