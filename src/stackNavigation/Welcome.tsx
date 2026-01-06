@@ -6,8 +6,6 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 type WelcomeNavigationProp = NativeStackScreenProps<SampleStackList, 'Welcome'>;
 
 export default function WelcomeScreen({ navigation }: WelcomeNavigationProp) {
-  //   const navigation = useNavigation<WelcomeNavigationProp>();
-
   return (
     <View style={styles.continer}>
       <Text>This is Welcome Screen!</Text>

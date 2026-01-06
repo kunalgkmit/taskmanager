@@ -1,3 +1,4 @@
+import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
 import { NavigationProp } from '@react-navigation/native';
 import type {
   NativeStackScreenProps,
@@ -13,15 +14,33 @@ declare global {
     status: boolean;
   }
   type ViewMode = 'none' | 'filter' | 'sort';
-  type SampleStackList = {
-    Welcome: undefined;
-    Login: { name: string; count: number };
-    Logout: { message: string };
-  };
-  type WelcomeNavigationProp = NativeStackScreenProps<SampleStackList>;
-  type LoginProps = NativeStackScreenProps<SampleStackList, 'Login'>;
-  type LogoutProps = NativeStackScreenProps<SampleStackList, 'Logout'>;
+  // type SampleStackList = {
+  //   Welcome: undefined;
+  //   Login: { name: string; count: number };
+  //   Logout: { message: string };
+  // };
+  // type WelcomeNavigationProp = NativeStackScreenProps<SampleStackList>;
+  // type LoginProps = NativeStackScreenProps<SampleStackList, 'Login'>;
+  // type LogoutProps = NativeStackScreenProps<SampleStackList, 'Logout'>;
 
-  // used with useNavigation
-  type StackNavigation = NativeStackNavigationProp<SampleStackList, 'Logout'>;
+  // // used with useNavigation
+  // type StackNavigation = NativeStackNavigationProp<SampleStackList, 'Logout'>;
+
+  type RootStackParamList = {
+    Welcome: undefined;
+    Tabs: { userName: string };
+  };
+
+  type BottomWelcomeProps = NativeStackNavigationProp<
+    RootStackParamList,
+    'Welcome'
+  >;
+
+  // For BOTTOM TAB NAV
+  type BottomTabNavTypes = {
+    Chats: undefined;
+    Status: undefined;
+    Calls: undefined;
+    Profile: { userName?: string } | undefined;
+  };
 }
