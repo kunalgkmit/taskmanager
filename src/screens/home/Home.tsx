@@ -69,7 +69,7 @@ export default function Home() {
     );
   };
 
-  const getDisplayTasks = () => {
+  const displayTasks = useMemo(() => {
     let modifyTasks = [...tasks];
 
     if (viewMode === VIEW_MODES.FILTER) {
@@ -92,9 +92,7 @@ export default function Home() {
     }
 
     return modifyTasks;
-  };
-
-  const displayTasks = useMemo(() => getDisplayTasks(), [tasks, viewMode]);
+  }, [tasks, viewMode]);
 
   return (
     <View style={styles.container}>
