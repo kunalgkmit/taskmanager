@@ -1,12 +1,19 @@
-import React, { useMemo, useRef, useState } from 'react';
-import { View, FlatList, StatusBar } from 'react-native';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
+import {
+  View,
+  FlatList,
+  StatusBar,
+  Alert,
+  BackHandler,
+  ToastAndroid,
+} from 'react-native';
 import { styles } from './styles.ts';
 import { TaskCard } from '../../components/taskCard';
 import AddTaskModalForm from '../../components/addTaskModalForm';
 import EmptyContainer from '../../components/emptyContainer';
 import AppBar from '../../components/appBar';
 import { VIEW_MODES, PRIORITY } from '../../constants/constants.ts';
-import { useNavigation } from '@react-navigation/native';
+import { useFocusEffect, useNavigation } from '@react-navigation/native';
 
 export default function Home() {
   const [tasks, setTasks] = useState<Task[]>([]);
@@ -14,6 +21,30 @@ export default function Home() {
   const [isEditMode, setIsEditMode] = useState(false);
   const [viewMode, setViewMode] = useState<ViewMode>(VIEW_MODES.NONE);
   const taskIdRef = useRef(1);
+  const [exitApp, setExitApp] = useState(false);
+
+  useFocusEffect(() => {
+    const doubleTapExit = () => {
+      if (exitApp) {
+        BackHandler.exitApp();
+        return true;
+      } else {
+        ToastAndroid.show('Press back to exit', ToastAndroid.LONG);
+        setExitApp(true);
+        setTimeout(() => setExitApp(false), 2000);
+        return true;
+      }
+    };
+
+    const backHandle = BackHandler.addEventListener(
+      'hardwareBackPress',
+      doubleTapExit,
+    );
+
+    return () => {
+      backHandle.remove();
+    };
+  });
 
   const navigation = useNavigation<StackNavProp>();
 

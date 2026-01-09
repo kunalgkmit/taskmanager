@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { View, Text } from 'react-native';
 import {
   useFocusEffect,
@@ -16,7 +16,7 @@ export default function TaskDetailsScreen() {
   console.log(task);
 
   useFocusEffect(
-    React.useCallback(() => {
+    useCallback(() => {
       navigation.getParent()?.setOptions({ swipeEnabled: false });
       return () => {
         navigation.getParent()?.setOptions({ swipeEnabled: true });
