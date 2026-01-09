@@ -6,6 +6,7 @@ import AddTaskModalForm from '../../components/addTaskModalForm';
 import EmptyContainer from '../../components/emptyContainer';
 import AppBar from '../../components/appBar';
 import { VIEW_MODES, PRIORITY } from '../../constants/constants.ts';
+import { useNavigation } from '@react-navigation/native';
 
 export default function Home() {
   const [tasks, setTasks] = useState<Task[]>([]);
@@ -13,6 +14,8 @@ export default function Home() {
   const [isEditMode, setIsEditMode] = useState(false);
   const [viewMode, setViewMode] = useState<ViewMode>(VIEW_MODES.NONE);
   const taskIdRef = useRef(1);
+
+  const navigation = useNavigation<StackNavProp>();
 
   const addTask = (task: Task) => {
     setTasks(prev => [
@@ -69,6 +72,10 @@ export default function Home() {
     );
   };
 
+  const onTaskPress = (task: Task) => {
+    navigation.navigate('TaskDetails', { task });
+  };
+
   const displayTasks = useMemo(() => {
     let modifyTasks = [...tasks];
 
@@ -101,6 +108,8 @@ export default function Home() {
         viewMode={viewMode}
         filterPress={toggleFilterButton}
         sortPress={toggleSortButton}
+        title="Home"
+        showDrawer={true}
       />
       <FlatList
         showsVerticalScrollIndicator={false}
@@ -112,6 +121,7 @@ export default function Home() {
             deleteTask={deleteTask}
             onUpdatePress={onUpdatePress}
             onStatusChange={onStatusChange}
+            onTaskPress={onTaskPress}
           />
         )}
         ListEmptyComponent={<EmptyContainer />}

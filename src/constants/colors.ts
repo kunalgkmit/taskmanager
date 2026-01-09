@@ -5,6 +5,7 @@ export const COLORS = {
   error: '#FF0000',
   checkBoxFillColor: '#78787bff',
   selectIcon: '#FFEF5F',
-  errorButton: '#ed8989ff',
-  modifyButton: '#898989ff',
+  errorButton: '#ff4e4eff',
+  modifyButton: '#636363ff',
+  drawerItemFocus: '#8a8989ff',
 };

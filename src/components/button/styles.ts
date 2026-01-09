@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { COLORS } from '../../constants/colors/colors';
+import { COLORS } from '../../constants/colors';
 
 export const styles = StyleSheet.create({
   modifyTask: {
