@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+import React, { useMemo, useRef, useState } from 'react';
 import {
   View,
   FlatList,
@@ -29,7 +29,7 @@ export default function Home() {
         BackHandler.exitApp();
         return true;
       } else {
-        ToastAndroid.show('Press back to exit', ToastAndroid.LONG);
+        ToastAndroid.show('Press back to exit', ToastAndroid.SHORT);
         setExitApp(true);
         setTimeout(() => setExitApp(false), 2000);
         return true;

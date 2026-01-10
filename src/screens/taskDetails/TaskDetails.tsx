@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, BackHandler } from 'react-native';
 import {
   useFocusEffect,
   useNavigation,
@@ -23,6 +23,20 @@ export default function TaskDetailsScreen() {
       };
     }, [navigation]),
   );
+
+  // useFocusEffect(() => {
+  //   const handleBackPress = () => {
+  //     navigation.replace('Settings');
+  //     return true;
+  //   };
+  //   const buttonHandle = BackHandler.addEventListener(
+  //     'hardwareBackPress',
+  //     handleBackPress,
+  //   );
+  //   return () => {
+  //     buttonHandle.remove();
+  //   };
+  // });
 
   return (
     <View style={styles.container}>
