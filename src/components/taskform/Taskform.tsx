@@ -3,20 +3,15 @@ import React, { useState, useEffect } from 'react';
 import { styles } from './styles.ts';
 import { Button as CustomButton } from '../button';
 import { TaskPriorityButton } from '../taskPriorityButton';
+import { useTaskStore } from '../../store/taskStore.ts';
+import { useTaskModifyStore } from '../../store/taskModificationStore.ts';
 
 interface TaskProps {
   buttonName: string;
-  initialTask?: Task;
-  onSubmit: (task: Task) => void;
   setShowModal: (visible: boolean) => void;
 }
 
-export default function TaskForm({
-  initialTask,
-  onSubmit,
-  setShowModal,
-  buttonName,
-}: TaskProps) {
+export default function TaskForm({ setShowModal, buttonName }: TaskProps) {
   const [title, setTitle] = useState('');
   const [priority, setPriority] = useState('');
   const [description, setDescription] = useState('');
@@ -26,13 +21,18 @@ export default function TaskForm({
     description: false,
   });
 
+  const selectedTask = useTaskStore(state => state.selectedTask);
+  const isEditMode = useTaskStore(state => state.isEditMode);
+  const addTask = useTaskModifyStore(state => state.addTask);
+  const updateTask = useTaskModifyStore(state => state.updateTask);
+
   useEffect(() => {
-    if (initialTask) {
-      setTitle(initialTask.title);
-      setPriority(initialTask.priority);
-      setDescription(initialTask.description);
+    if (selectedTask) {
+      setTitle(selectedTask.title);
+      setPriority(selectedTask.priority);
+      setDescription(selectedTask.description);
     }
-  }, [initialTask]);
+  }, [selectedTask]);
 
   const submitHandler = () => {
     const validateTitle = title.trim() === '';
@@ -48,13 +48,20 @@ export default function TaskForm({
     });
 
     if (!validateError) {
-      onSubmit({
-        taskId: initialTask ? initialTask.taskId : 0,
-        title,
-        priority,
-        description,
-        status: false,
-      });
+      if (isEditMode && selectedTask) {
+        updateTask({
+          ...selectedTask,
+          title: title,
+          description: description,
+          priority: priority,
+        });
+      } else {
+        addTask({
+          title: title,
+          description: description,
+          priority: priority,
+        });
+      }
       setShowModal(false);
     }
   };
@@ -74,7 +81,7 @@ export default function TaskForm({
 
       <Text style={styles.priorityLabel}>Priority</Text>
       <TaskPriorityButton
-        priorityToUpdate={initialTask ? initialTask.priority : ''}
+        priorityToUpdate={selectedTask ? selectedTask.priority : ''}
         setTaskPriority={setPriority}
       />
       {errors.priority ? (

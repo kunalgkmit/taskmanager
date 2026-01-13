@@ -1,19 +1,25 @@
-import React from 'react';
-import { View, Text, Button } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import React, { useEffect } from 'react';
+import { View, Text } from 'react-native';
 import AppBar from '../../components/appBar';
-import { useCounter } from '../../contexts/CounterContext';
+import { useCounterStore } from '../../store/counterStore';
 
 export default function SettingsScreen() {
-  const navigation = useNavigation<TabNavigationProp>();
-  const countContext = useCounter();
+  useEffect(() => {
+    console.log('SETTINGS is mounted>>>>>>');
+    return () => {
+      console.log('SETTINGS got unmounted>>>>>>>');
+    };
+  }, []);
+  // const navigation = useNavigation<TabNavigationProp>();
+  // const countContext = useCounter();
+  const twiceofCount = useCounterStore(state => state.twiceofCount);
   console.log('SETTINGS>>>>>>>>');
 
   return (
     <View>
       <AppBar title="Settings" showDrawer={false} />
       <Text>Settings Content Here</Text>
-      <Text>{countContext?.count}</Text>
+      <Text>{twiceofCount}</Text>
     </View>
   );
 }

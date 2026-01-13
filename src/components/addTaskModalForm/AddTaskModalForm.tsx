@@ -4,32 +4,19 @@ import { styles } from './styles';
 import { TaskModal } from '../taskModal';
 import { TaskForm } from '../taskForm';
 import FloatingActionButton from '../floatingActionButton';
+import { useTaskStore } from '../../store/taskStore';
 
-interface HomeProps {
-  isEditMode: boolean;
-  initialTask?: Task;
-  onSubmit: (task: Task) => void;
-  resetEditStates: () => void;
-}
-
-export default function AddTaskFormModal({
-  initialTask,
-  onSubmit,
-  resetEditStates,
-  isEditMode,
-}: HomeProps) {
+export default function AddTaskFormModal() {
   const [showModal, setShowModal] = useState(false);
 
+  const selectedTask = useTaskStore(state => state.selectedTask);
+  const isEditMode = useTaskStore(state => state.isEditMode);
+
   useEffect(() => {
-    if (initialTask) {
+    if (selectedTask) {
       setShowModal(true);
     }
-  }, [initialTask]);
-
-  const handleSubmit = (task: Task) => {
-    onSubmit(task);
-    setShowModal(false);
-  };
+  }, [selectedTask]);
 
   const buttonHandler = () => {
     setShowModal(true);
@@ -39,15 +26,12 @@ export default function AddTaskFormModal({
     <View style={styles.container}>
       <TaskModal
         modalName={isEditMode ? 'Update Task' : 'Add Task'}
-        resetEditStates={resetEditStates}
-        initialTask={initialTask}
+        initialTask={selectedTask}
         showAddTaskFormModal={showModal}
         setShowAddTaskFormModal={setShowModal}
       >
         <TaskForm
           buttonName={isEditMode ? 'Update Task' : 'Add Task'}
-          initialTask={initialTask}
-          onSubmit={handleSubmit}
           setShowModal={setShowModal}
         />
       </TaskModal>

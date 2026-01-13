@@ -4,7 +4,7 @@ import { COLORS } from '../../constants/colors';
 export const styles = StyleSheet.create({
   fab: {
     position: 'absolute',
-    bottom: 5,
+    bottom: 25,
     left: 130,
     width: 50,
     height: 50,

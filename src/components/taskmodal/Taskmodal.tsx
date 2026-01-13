@@ -1,9 +1,9 @@
 import { View, Modal, Text, Image, TouchableOpacity } from 'react-native';
 import React, { ReactNode } from 'react';
 import { styles } from './styles.ts';
+import { useTaskStore } from '../../store/taskStore.ts';
 
 interface AddTaskModalFormProps {
-  resetEditStates: () => void;
   showAddTaskFormModal: boolean;
   initialTask?: Task;
   setShowAddTaskFormModal: (visible: boolean) => void;
@@ -15,16 +15,18 @@ export default function TaskModal({
   showAddTaskFormModal,
   setShowAddTaskFormModal,
   children,
-  resetEditStates,
   initialTask,
   modalName,
 }: AddTaskModalFormProps) {
+  const clearSelection = useTaskStore(state => state.clearSelection);
+
   const closeHandler = () => {
     setShowAddTaskFormModal(false);
     if (initialTask) {
-      resetEditStates();
+      clearSelection();
     }
   };
+
   return (
     <Modal transparent={true} visible={showAddTaskFormModal}>
       <View style={styles.blurBackground}></View>
