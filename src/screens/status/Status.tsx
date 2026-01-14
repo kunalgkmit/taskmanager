@@ -9,7 +9,6 @@ import { useTaskStore } from '../../store/taskStore';
 export default function StatusScreen() {
   const [data, setData] = useState('');
   const originalTasks = useTaskStore(state => state.tasks);
-  const nextTaskId = useTaskStore(state => state.nextTaskId);
 
   const navigation = useNavigation<TabNavigationProp>();
 
@@ -17,7 +16,6 @@ export default function StatusScreen() {
     try {
       await AsyncStorage.setItem('TASKS', JSON.stringify(originalTasks));
       let tasks = ['TASKS', JSON.stringify(originalTasks)];
-      let taskId = ['TASK_ID', JSON.stringify(nextTaskId)];
 
       // await AsyncStorage.multiSet(originalTasks);
       // let keys = await AsyncStorage.getAllKeys();
@@ -44,7 +42,7 @@ export default function StatusScreen() {
 
   const deleteData = async () => {
     try {
-      await AsyncStorage.multiRemove(['TASKS', 'TASK ID']);
+      await AsyncStorage.removeItem('TASKS');
       console.log('DELETING DATA>>>>');
     } catch (e) {
       console.log(e);

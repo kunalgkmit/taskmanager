@@ -5,6 +5,7 @@ import {
   StatusBar,
   BackHandler,
   ToastAndroid,
+  Button,
 } from 'react-native';
 import { useTaskStore } from '../../store/taskStore';
 import { styles } from './styles.ts';
@@ -14,6 +15,7 @@ import EmptyContainer from '../../components/emptyContainer';
 import AppBar from '../../components/appBar';
 import { PRIORITY, VIEW_MODES } from '../../constants/constants.ts';
 import { useFocusEffect } from '@react-navigation/native';
+import { useTaskModifyStore } from '../../store/taskModificationStore.ts';
 
 export default function Home() {
   const [exitApp, setExitApp] = useState(false);
@@ -21,6 +23,10 @@ export default function Home() {
   const tasks = useTaskStore(state => state.tasks);
   const viewMode = useTaskStore(state => state.viewMode);
   const setViewMode = useTaskStore(state => state.setViewMode);
+  const nextTaskId = useTaskModifyStore(state => state.nextTaskId);
+  console.log('TASK ARRAY>>>>>>>>', tasks);
+  // console.log('VIEW MODE>>>>>>>>', viewMode);
+  console.log('NEXT TASK ID>>>>>>>>', nextTaskId);
 
   useFocusEffect(() => {
     const doubleTapExit = () => {
@@ -100,6 +106,11 @@ export default function Home() {
         renderItem={({ item }) => <TaskCard task={item} />}
         ListEmptyComponent={<EmptyContainer />}
       />
+
+      {/* <Button
+        title="CLEAR"
+        onPress={() => useTaskStore.setState(useTaskStore.getInitialState())}
+      /> */}
 
       <AddTaskModalForm />
     </View>
