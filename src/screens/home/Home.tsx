@@ -25,7 +25,6 @@ export default function Home() {
   const setViewMode = useTaskStore(state => state.setViewMode);
   const nextTaskId = useTaskModifyStore(state => state.nextTaskId);
   console.log('TASK ARRAY>>>>>>>>', tasks);
-  // console.log('VIEW MODE>>>>>>>>', viewMode);
   console.log('NEXT TASK ID>>>>>>>>', nextTaskId);
 
   useFocusEffect(() => {
