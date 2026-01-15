@@ -28,9 +28,18 @@ declare global {
     [ROUTES.DRAWER.ABOUT]: undefined;
   };
 
+  // AUTH STACK
+  type AuthStackType = {
+    [ROUTES.STACK.LOGIN]: undefined;
+    [ROUTES.STACK.LOGOUT]: undefined;
+    [ROUTES.STACK.DRAWER]: undefined;
+  };
+
   type TabNavigationProp = BottomTabNavigationProp<BottomTabNavTypes>;
   type DrawerNavProp = DrawerNavigationProp<DrawerTabTypes>;
   type StackNavProp = NativeStackNavigationProp<RootStackParamList>;
+
+  type AuthStackProp = NativeStackNavigationProp<AuthStackType>;
 
   type TaskDetailsProps = RouteProp<
     RootStackParamList,

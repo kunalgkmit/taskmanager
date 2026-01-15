@@ -10,6 +10,9 @@ export const ROUTES = {
   STACK: {
     TABS: 'Tabs',
     TASK_DETAILS: 'TaskDetails',
+    LOGIN: 'Login',
+    LOGOUT: 'Logout',
+    DRAWER: 'Drawer',
   },
 
   // Bottom Tab Routes

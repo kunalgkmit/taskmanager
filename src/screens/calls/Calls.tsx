@@ -4,7 +4,9 @@ import AppBar from '../../components/appBar';
 import { styles } from './styles';
 import { useTaskStore } from '../../store/taskStore';
 
-const storage = createMMKV();
+const storage = createMMKV({
+  id: `tasks-12345`,
+});
 
 export default function CallScreen() {
   const tasks = useTaskStore(state => state.tasks);
@@ -18,13 +20,38 @@ export default function CallScreen() {
       console.log('TASKS fetched>>>>>', fetchedData);
     }
   };
+  const saveNumber = () => {
+    storage.set('NUMBER', 100);
+  };
+  const getNumber = () => {
+    const fetchedNumber = storage.getString('NUMBER');
+    console.log('FETCHED NUMBER>>>>>', typeof fetchedNumber);
+
+    if (fetchedNumber) {
+      console.log('FETCHED NUMBER>>>>>', fetchedNumber);
+    }
+  };
+
+  const saveString = () => {
+    storage.set('FULL-NAME', 'KUNAL PRAJAPAT');
+  };
+  const getString = () => {
+    const fetchedName = storage.getNumber('FULL-NAME');
+    if (fetchedName) {
+      console.log('FETCHED NAME>>>>>', fetchedName);
+    }
+  };
   return (
     <View>
       <AppBar title="Calls" showDrawer={true} />
       <View style={styles.container}>
         <Text>This is Calls Tab</Text>
-        <Button title="SAVE DATA" onPress={saveData} />
-        <Button title="FETCH DATA" onPress={fetchData} />
+        <Button title="SAVE TASKS" onPress={saveData} />
+        <Button title="FETCH TASKS" onPress={fetchData} />
+        <Button title="SAVE NUMBER" onPress={saveNumber} />
+        <Button title="FETCH NUMBER" onPress={getNumber} />
+        <Button title="SAVE STRING" onPress={saveString} />
+        <Button title="FETCH STRING" onPress={getString} />
       </View>
     </View>
   );
