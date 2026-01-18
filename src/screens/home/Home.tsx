@@ -5,17 +5,16 @@ import {
   StatusBar,
   BackHandler,
   ToastAndroid,
-  Button,
 } from 'react-native';
 import { useTaskStore } from '../../store/taskStore';
 import { styles } from './styles.ts';
 import { TaskCard } from '../../components/taskCard';
 import AddTaskModalForm from '../../components/addTaskModalForm';
 import EmptyContainer from '../../components/emptyContainer';
-import AppBar from '../../components/appBar';
 import { PRIORITY, VIEW_MODES } from '../../constants/constants.ts';
 import { useFocusEffect } from '@react-navigation/native';
 import { useTaskModifyStore } from '../../store/taskModificationStore.ts';
+import AppBar from '@components/appBar/index.ts';
 
 export default function Home() {
   const [exitApp, setExitApp] = useState(false);
@@ -87,6 +86,25 @@ export default function Home() {
     return modifyTasks;
   }, [tasks, viewMode]);
 
+  // function f1() {
+  //   return 1;
+  //   function f2() {
+  //     return 2;
+  //   }
+  //   function f3() {
+  //     return 3;
+  //   }
+  // }
+  // console.log(f1());
+
+  try {
+    // run time error
+    const result = x * 2;
+    console.log(result);
+  } catch (error) {
+    console.log(error.message);
+  }
+
   return (
     <View style={styles.container}>
       <StatusBar barStyle={'light-content'} />
@@ -105,11 +123,6 @@ export default function Home() {
         renderItem={({ item }) => <TaskCard task={item} />}
         ListEmptyComponent={<EmptyContainer />}
       />
-
-      {/* <Button
-        title="CLEAR"
-        onPress={() => useTaskStore.setState(useTaskStore.getInitialState())}
-      /> */}
 
       <AddTaskModalForm />
     </View>

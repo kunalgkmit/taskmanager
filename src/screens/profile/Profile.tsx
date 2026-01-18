@@ -41,6 +41,7 @@ export default function ProfileScreen() {
     useAuthStore.setState({
       isAuth: false,
     });
+    useTaskStore.persist.clearStorage();
   };
 
   return (

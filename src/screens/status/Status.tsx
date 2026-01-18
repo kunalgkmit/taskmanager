@@ -61,7 +61,7 @@ export default function StatusScreen() {
         <Text>This is Status Screen!</Text>
         <Button title="SAVE DATA" onPress={saveTasks} />
         <Button title="DISPLAY DATA" onPress={getData} />
-        <Button title="DELETE DATE" onPress={deleteData} />
+        <Button title="DELETE DATA" onPress={deleteData} />
       </View>
     </View>
   );
