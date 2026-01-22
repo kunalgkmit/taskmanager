@@ -29,15 +29,23 @@ async function checkFun() {
 checkFun();
 
 const postData = async (tasks: Task[]) => {
-  const response = await fetch(BASE_URL, {
-    method: 'POST',
-    body: JSON.stringify(tasks),
-    headers: {
-      'Content-type': 'application/json',
-    },
-  });
-  const resJSON = await response.json();
-  console.log('POSTED DATA>>>>>', resJSON);
+  const formData = new FormData();
+  formData.append('name', 'John Doe');
+  formData.append('email', 'john@example.com');
+  try {
+    const response = await fetch(BASE_URL, {
+      method: 'POST',
+      body: JSON.stringify(tasks),
+      headers: {
+        // 'Content-Type': 'multipart/form-data',
+        'Content-Type': 'application/json',
+      },
+    });
+    const result = await response.json();
+    console.log(result);
+  } catch (error) {
+    console.error('Error:', error);
+  }
 };
 
 const putData = async (id: number) => {
@@ -57,6 +65,9 @@ const putData = async (id: number) => {
       },
     });
     if (!response.ok) {
+      if (response.status === 404) {
+      } else if (response.status === 500) {
+      }
       throw 'GOING INTO CATCH :-)';
     }
     const resJSON = await response.json();

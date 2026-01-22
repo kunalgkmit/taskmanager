@@ -5,6 +5,7 @@ import {
   StatusBar,
   BackHandler,
   ToastAndroid,
+  Button,
 } from 'react-native';
 import { useTaskStore } from '../../store/taskStore';
 import { styles } from './styles.ts';
@@ -23,8 +24,6 @@ export default function Home() {
   const viewMode = useTaskStore(state => state.viewMode);
   const setViewMode = useTaskStore(state => state.setViewMode);
   const nextTaskId = useTaskModifyStore(state => state.nextTaskId);
-  console.log('TASK ARRAY>>>>>>>>', tasks);
-  console.log('NEXT TASK ID>>>>>>>>', nextTaskId);
 
   useFocusEffect(() => {
     const doubleTapExit = () => {
@@ -85,25 +84,6 @@ export default function Home() {
 
     return modifyTasks;
   }, [tasks, viewMode]);
-
-  // function f1() {
-  //   return 1;
-  //   function f2() {
-  //     return 2;
-  //   }
-  //   function f3() {
-  //     return 3;
-  //   }
-  // }
-  // console.log(f1());
-
-  try {
-    // run time error
-    const result = x * 2;
-    console.log(result);
-  } catch (error) {
-    console.log(error.message);
-  }
 
   return (
     <View style={styles.container}>
